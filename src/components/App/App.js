@@ -1,13 +1,10 @@
+import { MainContainer } from '../MainContainer';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Game Affinity
-        </p>
-      </header>
+      <MainContainer />
     </div>
   );
 }
