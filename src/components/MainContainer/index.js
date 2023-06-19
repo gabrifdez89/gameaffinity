@@ -1,9 +1,10 @@
+import React from 'react';
 import './index.css';
 
-function MainContainer() {
+function MainContainer(props) {
   return (
     <div className="MainContainer">
-        <h1>Game Affinity</h1>
+        {props.children}
     </div>
   );
 }
