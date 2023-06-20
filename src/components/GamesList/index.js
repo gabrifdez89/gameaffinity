@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.css';
 
-function Games(props) {
+function GamesList(props) {
   return (
-    <div className="Games">
+    <div className="GamesList">
         {props.children}
     </div>
   );
 }
 
-export { Games };
+export { GamesList };
