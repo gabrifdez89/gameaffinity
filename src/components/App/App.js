@@ -6,10 +6,13 @@ import { SearchBar } from '../SearchBar';
 import { GamesList } from '../GamesList';
 import { DummyGames } from '../../utils/DummyGames';
 import { GameCard } from '../GameCard';
+import { useFetchLatestGamesReleased } from '../../hooks/useFetchLatestGamesReleased';
 import './App.css';
 
 function App() {
   const [games, setGames] = useState(DummyGames);
+
+  useFetchLatestGamesReleased({ setGames });
 
   return (
     <div className="App">
@@ -27,6 +30,8 @@ function App() {
                 released={game.released}
                 background_image={game.background_image}
                 metacritic={game.metacritic}
+                rating={game.rating}
+                rating_top={game.rating_top}
                 playtime={game.playtime}
                 key={game.id}
               />
