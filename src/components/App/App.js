@@ -19,7 +19,7 @@ function App() {
       <MainContainer>
         <Header />
         <TopBar />
-        <SearchBar />
+        <SearchBar setGames={setGames}/>
         <GamesList>
           {games.map((game) => {
             return (
