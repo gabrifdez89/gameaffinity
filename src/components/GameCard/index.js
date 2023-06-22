@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.css';
 
-function GameCard(props) {
+function GameCard({ game }) {
   return (
     <div className="GameCard">
-        <img className="GameCardImage" alt="" src={props.background_image}/>
-        {props.metacritic ? (<h3 className="GameCardRating">{props.metacritic}</h3>): ('')}
-        <h2 className="GameCardTitle">{props.name}</h2>
+        <img className="GameCardImage" alt="" src={game.background_image}/>
+        {game.metacritic ? (<h3 className="GameCardRating">{game.metacritic}</h3>): ('')}
+        <h2 className="GameCardTitle">{game.name}</h2>
     </div>
   );
 }

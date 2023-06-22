@@ -4,35 +4,42 @@ import { Header } from '../Header';
 import { TopBar } from '../TopBar';
 import { SearchBar } from '../SearchBar';
 import { GamesList } from '../GamesList';
-import { DummyGames } from '../../utils/DummyGames';
 import { GameCard } from '../GameCard';
 import { useFetchLatestGamesReleased } from '../../hooks/useFetchLatestGamesReleased';
+import { useFetchSearchedGames } from '../../hooks/useFetchSearchedGames';
 import './App.css';
 
 function App() {
-  const [games, setGames] = useState(DummyGames);
+  const [latestGamesReleased, setLatestGamesReleased] = useState([]);
+  const [searchedGames, setSearchedGames] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
-  useFetchLatestGamesReleased({ setGames });
+  useFetchLatestGamesReleased({ setLatestGamesReleased });
+  useFetchSearchedGames({ 
+    setSearchedGames: setSearchedGames,
+    searchValue: searchValue
+  });
 
   return (
     <div className="App">
       <MainContainer>
         <Header />
         <TopBar />
-        <SearchBar setGames={setGames}/>
+        <SearchBar setSearchValue={setSearchValue}/>
         <GamesList>
-          {games.map((game) => {
+          {searchValue.length > 0
+          ? searchedGames.map((game) => {
             return (
               <GameCard
-                id={game.id}
-                slug={game.slug}
-                name={game.name}
-                released={game.released}
-                background_image={game.background_image}
-                metacritic={game.metacritic}
-                rating={game.rating}
-                rating_top={game.rating_top}
-                playtime={game.playtime}
+                game={game}
+                key={game.id}
+              />
+            );
+          })
+          : latestGamesReleased.map((game) => {
+            return (
+              <GameCard
+                game={game}
                 key={game.id}
               />
             );
