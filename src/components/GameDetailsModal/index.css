@@ -1,0 +1,5 @@
+.GameDetailsModal {
+    .ant-modal-content, .ant-modal-header {
+        background-color: var(--secondary-color);
+    }
+}
