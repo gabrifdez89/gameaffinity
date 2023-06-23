@@ -14,8 +14,12 @@ function useFetchLatestGamesReleased({ setLatestGamesReleased }) {
     });
 
     async function getLatestGamesReleased() {
-      const { data } = await api('games?dates=2023-05-16,2023-06-16&key=14c3d9116d5e49cb8ed834b4f613306c');
-        
+      const to_date = new Date();
+      const from_date = new Date();
+      from_date.setMonth(from_date.getMonth() - 1);
+      
+      const { data } = await api(`games?dates=${from_date.toISOString().substring(0, 10)},${to_date.toISOString().substring(0, 10)}`);
+      
       return data.results;
     }
 

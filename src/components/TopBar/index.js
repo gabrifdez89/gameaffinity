@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
-import { SearchOutlined, HeartOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { SearchOutlined, PlusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import './index.css';
 
 function TopBar() {
@@ -14,7 +14,7 @@ function TopBar() {
         {
           label: 'Want to play',
           key: 'want-to-play',
-          icon: <HeartOutlined />,
+          icon: <PlusCircleOutlined />,
         },
         {
           label: 'Played',
@@ -24,7 +24,6 @@ function TopBar() {
     ];
 
     const onClick = (e) => {
-        console.log('click ', e);
         setCurrentTopBarOption(e.key);
     };
 

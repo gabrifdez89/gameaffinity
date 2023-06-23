@@ -14,7 +14,7 @@ function useFetchSearchedGames({ setSearchedGames, searchValue }) {
         });
     
         async function getSearchedGames() {
-            const { data } = await api(`games?search=${searchValue}&key=14c3d9116d5e49cb8ed834b4f613306c`);
+            const { data } = await api(`games?search=${searchValue}`);
                         
             return data.results;
         }
