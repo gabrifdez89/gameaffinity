@@ -10,6 +10,7 @@ import { useFetchSearchedGames } from '../../hooks/useFetchSearchedGames';
 import { useFetchGameDetails } from '../../hooks/useFetchGameDetails';
 import { GameDetailsModal } from '../GameDetailsModal';
 import './App.css';
+import { useFetchGameDetailsScreenshots } from '../../hooks/useFetchGameDetailsScreenshots';
 
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
@@ -17,6 +18,7 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
   const [gameDetailsSlug, setGameDetailsSlug] = useState('');
   const [gameDetails, setGameDetails] = useState();
+  const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useFetchLatestGamesReleased({ setLatestGamesReleased });
@@ -26,6 +28,10 @@ function App() {
   });
   useFetchGameDetails({
     setGameDetails: setGameDetails,
+    gameSlug: gameDetailsSlug
+  });
+  useFetchGameDetailsScreenshots({
+    setGameDetailsScreenshots: setGameDetailsScreenshots,
     gameSlug: gameDetailsSlug
   });
 
@@ -67,6 +73,7 @@ function App() {
           gameDetails={gameDetails}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          gameDetailsScreenshots={gameDetailsScreenshots}
         />
       </MainContainer>
     </div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 
-function useFetchGameDetails({ setGameDetails, gameSlug }) {
+function useFetchGameDetailsScreenshots({ setGameDetailsScreenshots, gameSlug }) {
     useEffect(() => {
         const api = axios.create({
           baseURL: 'https://api.rawg.io/api/',
@@ -13,20 +13,20 @@ function useFetchGameDetails({ setGameDetails, gameSlug }) {
           }
         });
     
-        async function getGameDetails() {
-            const { data } = await api(`games/${gameSlug}`);
+        async function getGameDetailsScreenshots() {
+            const { data } = await api(`games/${gameSlug}/screenshots`);
                         
-            return data;
+            return data.results.map(screenshotItem => screenshotItem.image);
         }
     
         if (gameSlug) {
-            getGameDetails().then((gameDetails) => {
-            setGameDetails(gameDetails);
+            getGameDetailsScreenshots().then((gameDetails) => {
+                setGameDetailsScreenshots(gameDetails);
           }).catch((err) => {
             console.log(err);
           });
         }
-    }, [setGameDetails, gameSlug]);
+    }, [setGameDetailsScreenshots, gameSlug]);
 }
 
-export { useFetchGameDetails };
+export { useFetchGameDetailsScreenshots };

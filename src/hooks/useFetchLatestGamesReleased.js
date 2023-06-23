@@ -15,9 +15,7 @@ function useFetchLatestGamesReleased({ setLatestGamesReleased }) {
 
     async function getLatestGamesReleased() {
       const { data } = await api('games?dates=2023-05-16,2023-06-16&key=14c3d9116d5e49cb8ed834b4f613306c');
-      
-      console.log(data.results);
-  
+        
       return data.results;
     }
 
