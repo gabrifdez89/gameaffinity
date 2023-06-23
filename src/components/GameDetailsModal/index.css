@@ -1,5 +1,31 @@
 .GameDetailsModal {
-    .ant-modal-content, .ant-modal-header {
-        background-color: var(--secondary-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Orbit', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    serif;
+    color: var(--text-color);
+
+    .ant-modal-header {
+        background-color: var(--modal-background-color);
+        padding-top: 20px;
+    }
+
+    .ant-modal-content {
+        background-color: var(--modal-background-color);
+        
+        .ant-modal-body p>span {
+            color: var(--main-color);
+        }
+    }
+
+    .ant-modal-title {
+        color: var(--text-color);
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .GameDetailsModalImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
