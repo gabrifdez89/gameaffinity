@@ -37,14 +37,11 @@ function App() {
     gameSlug: gameDetailsSlug
   });
   useFetchWantToPlayGames({
-    wantToPlayGamesSlugs: wantToPlayGamesSlugs,
     setWantToPlayGamesSlugs: setWantToPlayGamesSlugs
   });
 
   const openGameDetails = function(gameSlug) {
-    //Set game details slug
     setGameDetailsSlug(gameSlug);
-    //Open modal
     setIsModalOpen(true);
   };
 
@@ -73,6 +70,8 @@ function App() {
                 game={game}
                 key={game.id}
                 openGameDetails={openGameDetails}
+                wantToPlayGamesSlugs={wantToPlayGamesSlugs}
+                setWantToPlayGamesSlugs={setWantToPlayGamesSlugs}
               />
             );
           })}
@@ -82,6 +81,8 @@ function App() {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           gameDetailsScreenshots={gameDetailsScreenshots}
+          wantToPlayGamesSlugs={wantToPlayGamesSlugs}
+          setWantToPlayGamesSlugs={setWantToPlayGamesSlugs}
         />
       </MainContainer>
     </div>

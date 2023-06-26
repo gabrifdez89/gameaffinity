@@ -1,11 +1,32 @@
 import React from 'react';
 import { Modal, Carousel } from 'antd';
-import { PlusCircleOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
 import './index.css';
 
-function GameDetailsModal({ gameDetails, isModalOpen, setIsModalOpen, gameDetailsScreenshots }) {
-    return(
+function GameDetailsModal({
+    gameDetails,
+    isModalOpen,
+    setIsModalOpen,
+    gameDetailsScreenshots,
+    wantToPlayGamesSlugs,
+    setWantToPlayGamesSlugs }) {
+
+        const addGameToWantToPlay = (event) => {
+            let copy = wantToPlayGamesSlugs.slice();
+            copy.push(gameDetails.slug);
+            setWantToPlayGamesSlugs(copy);
+            localStorage.setItem('want_to_play_games_slugs', JSON.stringify(copy));
+        };
+        
+        const removeGameFromWantToPlay = (event) => {
+            let copy = wantToPlayGamesSlugs.slice();
+            copy.splice(copy.indexOf(gameDetails.slug), 1);
+            setWantToPlayGamesSlugs(copy);
+            localStorage.setItem('want_to_play_games_slugs', JSON.stringify(copy));
+        };
+    
+        return(
         gameDetails
         ? (<>
             <Modal
@@ -18,10 +39,17 @@ function GameDetailsModal({ gameDetails, isModalOpen, setIsModalOpen, gameDetail
                 centered={true}>
                     <div className="GameDetailsModalMetacriticAndWantToPlayMoreContainer">
                         <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>
-                        <div className="GameDetailsModalWantToPlay">
+                        {wantToPlayGamesSlugs.includes(gameDetails.slug)
+                        ? 
+                        <div className="GameDetailsModalWantToPlaySaved" onClick={removeGameFromWantToPlay}>
+                            <MinusCircleOutlined className="GameDetailsModalWantToPlayIcon" />
+                            <span className="GameDetailsModalWantToPlayText">Remove</span>
+                        </div>
+                        : 
+                        <div className="GameDetailsModalWantToPlay" onClick={addGameToWantToPlay}>
                             <PlusCircleOutlined className="GameDetailsModalWantToPlayIcon" />
                             <span className="GameDetailsModalWantToPlayText">Want to play</span>
-                        </div>
+                        </div>}
                     </div>
                     <Carousel autoplay className="GameDetailsModalCarousel">
                         

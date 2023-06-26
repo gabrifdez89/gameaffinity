@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 
 function useFetchWantToPlayGames({
-    wantToPlayGamesSlugs,
     setWantToPlayGamesSlugs }) {
   useEffect(() => {
     /* const api = axios.create({
@@ -31,18 +30,18 @@ function useFetchWantToPlayGames({
       console.log(err);
     }); */
     async function getWantToPlayGamesSlugs() {
-        let wantToPlayGamesSlugsLocalStorage = await JSON.parse(localStorage.getItem('want_to_play_games_slugs'));
-        if (wantToPlayGamesSlugsLocalStorage === undefined) {
-            wantToPlayGamesSlugsLocalStorage = [];
-        }
+      let wantToPlayGamesSlugsLocalStorage = await JSON.parse(localStorage.getItem('want_to_play_games_slugs'));
+      if (wantToPlayGamesSlugsLocalStorage === null) {
+        wantToPlayGamesSlugsLocalStorage = [];
+      }
 
-        console.log('want to play games slugs: ', wantToPlayGamesSlugs);
-
-        return wantToPlayGamesSlugsLocalStorage;
+      return wantToPlayGamesSlugsLocalStorage;
     }
 
     getWantToPlayGamesSlugs().then((slugs) => {
-        setWantToPlayGamesSlugs(slugs);
+      setWantToPlayGamesSlugs(slugs);
     });
-  }, [wantToPlayGamesSlugs, setWantToPlayGamesSlugs]);
+  }, [setWantToPlayGamesSlugs]);
 }
+
+export { useFetchWantToPlayGames };
