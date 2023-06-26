@@ -63,3 +63,16 @@
     z-index: 1;
     background-color: var(--main-color);
 }
+
+.GameCardWantToPlayIconSaved {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--text-color);
+    font-size: 36px;
+    text-align: right;
+    margin: 0;
+    padding: 9.5px 6px;
+    z-index: 1;
+    background-color: var(--secondary-color);
+}

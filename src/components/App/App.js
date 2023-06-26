@@ -9,8 +9,9 @@ import { useFetchLatestGamesReleased } from '../../hooks/useFetchLatestGamesRele
 import { useFetchSearchedGames } from '../../hooks/useFetchSearchedGames';
 import { useFetchGameDetails } from '../../hooks/useFetchGameDetails';
 import { GameDetailsModal } from '../GameDetailsModal';
-import './App.css';
 import { useFetchGameDetailsScreenshots } from '../../hooks/useFetchGameDetailsScreenshots';
+import { useFetchWantToPlayGames } from '../../hooks/useFetchWantToPlayGames';
+import './App.css';
 
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
@@ -20,6 +21,7 @@ function App() {
   const [gameDetails, setGameDetails] = useState();
   const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [wantToPlayGamesSlugs, setWantToPlayGamesSlugs] = useState([]);
 
   useFetchLatestGamesReleased({ setLatestGamesReleased });
   useFetchSearchedGames({ 
@@ -33,6 +35,10 @@ function App() {
   useFetchGameDetailsScreenshots({
     setGameDetailsScreenshots: setGameDetailsScreenshots,
     gameSlug: gameDetailsSlug
+  });
+  useFetchWantToPlayGames({
+    wantToPlayGamesSlugs: wantToPlayGamesSlugs,
+    setWantToPlayGamesSlugs: setWantToPlayGamesSlugs
   });
 
   const openGameDetails = function(gameSlug) {
@@ -56,6 +62,8 @@ function App() {
                 game={game}
                 key={game.id}
                 openGameDetails={openGameDetails}
+                wantToPlayGamesSlugs={wantToPlayGamesSlugs}
+                setWantToPlayGamesSlugs={setWantToPlayGamesSlugs}
               />
             );
           })
