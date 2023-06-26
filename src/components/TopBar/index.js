@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Menu } from 'antd';
 import { SearchOutlined, PlusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import './index.css';
 
-function TopBar() {
-    const [currentTopBarOption, setCurrentTopBarOption] = useState('search');
+function TopBar({
+  currentTopBarOption,
+  setCurrentTopBarOption
+}) {
     const items = [
         {
           label: 'Search',

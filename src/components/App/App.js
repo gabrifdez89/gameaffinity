@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { MainContainer } from '../MainContainer';
 import { Header } from '../Header';
 import { TopBar } from '../TopBar';
-import { SearchBar } from '../SearchBar';
-import { GamesList } from '../GamesList';
-import { GameCard } from '../GameCard';
 import { useFetchLatestGamesReleased } from '../../hooks/useFetchLatestGamesReleased';
 import { useFetchSearchedGames } from '../../hooks/useFetchSearchedGames';
 import { useFetchGameDetails } from '../../hooks/useFetchGameDetails';
 import { GameDetailsModal } from '../GameDetailsModal';
 import { useFetchGameDetailsScreenshots } from '../../hooks/useFetchGameDetailsScreenshots';
 import { useFetchWantToPlayGames } from '../../hooks/useFetchWantToPlayGames';
+import { SearchBoard } from '../SearchBoard';
 import './App.css';
 
 function App() {
+  const [currentTopBarOption, setCurrentTopBarOption] = useState('search');
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -49,33 +48,19 @@ function App() {
     <div className="App">
       <MainContainer>
         <Header />
-        <TopBar />
-        <SearchBar setSearchValue={setSearchValue}/>
-        <GamesList>
-          {searchValue.length > 0
-          ? searchedGames.map((game) => {
-            return (
-              <GameCard
-                game={game}
-                key={game.id}
-                openGameDetails={openGameDetails}
-                wantToPlayGamesSlugs={wantToPlayGamesSlugs}
-                setWantToPlayGamesSlugs={setWantToPlayGamesSlugs}
-              />
-            );
-          })
-          : latestGamesReleased.map((game) => {
-            return (
-              <GameCard
-                game={game}
-                key={game.id}
-                openGameDetails={openGameDetails}
-                wantToPlayGamesSlugs={wantToPlayGamesSlugs}
-                setWantToPlayGamesSlugs={setWantToPlayGamesSlugs}
-              />
-            );
-          })}
-        </GamesList>
+        <TopBar
+          currentTopBarOption={currentTopBarOption}
+          setCurrentTopBarOption={setCurrentTopBarOption}
+        />
+        <SearchBoard
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          searchedGames={searchedGames}
+          openGameDetails={openGameDetails}
+          wantToPlayGamesSlugs={wantToPlayGamesSlugs}
+          setWantToPlayGamesSlugs={setWantToPlayGamesSlugs}
+          latestGamesReleased={latestGamesReleased}
+        />
         <GameDetailsModal
           gameDetails={gameDetails}
           isModalOpen={isModalOpen}
