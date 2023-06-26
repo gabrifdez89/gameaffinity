@@ -29,3 +29,29 @@
     height: 100%;
     object-fit: cover;
 }
+
+.GameDetailsModalMetacriticAndWantToPlayMoreContainer {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.GameDetailsModalMetacritic{
+    display: inline;
+    text-align: left;
+}
+
+.GameDetailsModalWantToPlay {
+    display: inline-block;
+    background-color: var(--main-color);
+}
+
+.GameDetailsModalWantToPlayText {
+    font-size: 18px;
+    padding-right: 5px;
+}
+
+.GameDetailsModalWantToPlayIcon {
+    color: var(--text-color);
+    font-size: 18px;
+    padding: 8px 6px;  
+}

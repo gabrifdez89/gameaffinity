@@ -1,5 +1,7 @@
 import React from 'react';
 import { Modal, Carousel } from 'antd';
+import { PlusCircleOutlined } from '@ant-design/icons';
+
 import './index.css';
 
 function GameDetailsModal({ gameDetails, isModalOpen, setIsModalOpen, gameDetailsScreenshots }) {
@@ -14,8 +16,14 @@ function GameDetailsModal({ gameDetails, isModalOpen, setIsModalOpen, gameDetail
                 footer={null}
                 width={700}
                 centered={true}>
-                    <a href={gameDetails.metacritic_url}><p>Metacritic: {gameDetails.metacritic}</p></a>
-                    <Carousel autoplay>
+                    <div className="GameDetailsModalMetacriticAndWantToPlayMoreContainer">
+                        <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>
+                        <div className="GameDetailsModalWantToPlay">
+                            <PlusCircleOutlined className="GameDetailsModalWantToPlayIcon" />
+                            <span className="GameDetailsModalWantToPlayText">Want to play</span>
+                        </div>
+                    </div>
+                    <Carousel autoplay className="GameDetailsModalCarousel">
                         
                         {gameDetails.background_image
                             ? <div><img className="GameDetailsModalCarouselItem" alt="" src={gameDetails.background_image} /></div>
