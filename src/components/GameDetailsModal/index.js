@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Carousel } from 'antd';
-import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined, MinusCircleOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import './index.css';
 
@@ -12,9 +12,11 @@ function GameDetailsModal({
     wantToPlayGames,
     setWantToPlayGames,
     searchedGames,
-    latestGamesReleased }) {
+    latestGamesReleased,
+    playedGames,
+    setPlayedGames }) {
 
-        const addGameToWantToPlay = (event) => {
+        const addGameToWantToPlay = () => {
             let copy = JSON.parse(JSON.stringify(wantToPlayGames));
             let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
             copy[gameDetails.slug] = game;
@@ -22,12 +24,27 @@ function GameDetailsModal({
             localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
         
-        const removeGameFromWantToPlay = (event) => {
+        const removeGameFromWantToPlay = () => {
             let copy = JSON.parse(JSON.stringify(wantToPlayGames));
             delete copy[gameDetails.slug];
             setWantToPlayGames(copy);
             localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
+
+        const addGameToPlayedGames = () => {
+            let copy = JSON.parse(JSON.stringify(playedGames));
+            let game = searchedGames.concat(latestGamesReleased).concat(Object.values(wantToPlayGames)).find(g => g.slug === gameDetails.slug);
+            copy[gameDetails.slug] = game;
+            setPlayedGames(copy);
+            localStorage.setItem('played_games', JSON.stringify(copy));
+          };
+        
+          const removeGameFromPlayedGames = () => {
+            let copy = JSON.parse(JSON.stringify(playedGames));
+            delete copy[gameDetails.slug];
+            setPlayedGames(copy);
+            localStorage.setItem('played_games', JSON.stringify(copy));
+          };
     
         return(
         gameDetails
@@ -40,18 +57,29 @@ function GameDetailsModal({
                 footer={null}
                 width={700}
                 centered={true}>
-                    <div className="GameDetailsModalMetacriticAndWantToPlayMoreContainer">
+                    <div className="GameDetailsModalHeader">
                         <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>
                         {wantToPlayGames[gameDetails.slug]
                         ? 
                         <div className="GameDetailsModalWantToPlaySaved" onClick={removeGameFromWantToPlay}>
                             <MinusCircleOutlined className="GameDetailsModalWantToPlayIcon" />
-                            <span className="GameDetailsModalWantToPlayText">Remove</span>
+                            <span className="GameDetailsModalWantToPlayText">Don't want to play</span>
                         </div>
                         : 
                         <div className="GameDetailsModalWantToPlay" onClick={addGameToWantToPlay}>
                             <PlusCircleOutlined className="GameDetailsModalWantToPlayIcon" />
                             <span className="GameDetailsModalWantToPlayText">Want to play</span>
+                        </div>}
+                        {playedGames[gameDetails.slug]
+                        ? 
+                        <div className="GameDetailsModalPlayedGamesSaved" onClick={removeGameFromPlayedGames}>
+                            <CloseCircleOutlined className="GameDetailsModalPlayedGamesIcon" />
+                            <span className="GameDetailsModalPlayedGamesText">Unmark as played</span>
+                        </div>
+                        : 
+                        <div className="GameDetailsModalPlayedGames" onClick={addGameToPlayedGames}>
+                            <CheckCircleOutlined className="GameDetailsModalPlayedGamesIcon" />
+                            <span className="GameDetailsModalPlayedGamesText">Mark as played</span>
                         </div>}
                     </div>
                     <Carousel autoplay className="GameDetailsModalCarousel">

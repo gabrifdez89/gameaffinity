@@ -8,6 +8,7 @@ import { useFetchGameDetails } from '../../hooks/useFetchGameDetails';
 import { GameDetailsModal } from '../GameDetailsModal';
 import { useFetchGameDetailsScreenshots } from '../../hooks/useFetchGameDetailsScreenshots';
 import { useFetchWantToPlayGames } from '../../hooks/useFetchWantToPlayGames';
+import { useFetchPlayedGames } from '../../hooks/useFetchPlayedGames';
 import { SearchBoard } from '../SearchBoard';
 import { WantToPlayBoard } from '../WantToPlayBoard';
 import './App.css';
@@ -23,6 +24,7 @@ function App() {
   const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
+  const [playedGames, setPlayedGames] = useState({});
 
   useFetchLatestGamesReleased({ setLatestGamesReleased });
   useFetchSearchedGames({ 
@@ -39,6 +41,9 @@ function App() {
   });
   useFetchWantToPlayGames({
     setWantToPlayGames: setWantToPlayGames
+  });
+  useFetchPlayedGames({
+    setPlayedGames: setPlayedGames
   });
 
   const openGameDetails = function(gameSlug) {
@@ -63,6 +68,8 @@ function App() {
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
           latestGamesReleased={latestGamesReleased}
+          playedGames={playedGames}
+          setPlayedGames={setPlayedGames}
         />}
         {currentTopBarOption === 'want-to-play' &&
         <WantToPlayBoard
@@ -71,6 +78,8 @@ function App() {
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
           openGameDetails={openGameDetails}
+          playedGames={playedGames}
+          setPlayedGames={setPlayedGames}
         />
         }
         <GameDetailsModal
@@ -82,6 +91,8 @@ function App() {
           setWantToPlayGames={setWantToPlayGames}
           searchedGames={searchedGames}
           latestGamesReleased={latestGamesReleased}
+          playedGames={playedGames}
+          setPlayedGames={setPlayedGames}
         />
       </MainContainer>
     </div>

@@ -11,7 +11,9 @@ function SearchBoard({
     openGameDetails,
     wantToPlayGames,
     setWantToPlayGames,
-    latestGamesReleased
+    latestGamesReleased,
+    playedGames,
+    setPlayedGames
 }) {
     return (
         <>   
@@ -29,6 +31,8 @@ function SearchBoard({
                         openGameDetails={openGameDetails}
                         wantToPlayGames={wantToPlayGames}
                         setWantToPlayGames={setWantToPlayGames}
+                        playedGames={playedGames}
+                        setPlayedGames={setPlayedGames}
                     />
                     );
                     })
@@ -40,6 +44,8 @@ function SearchBoard({
                                 openGameDetails={openGameDetails}
                                 wantToPlayGames={wantToPlayGames}
                                 setWantToPlayGames={setWantToPlayGames}
+                                playedGames={playedGames}
+                                setPlayedGames={setPlayedGames}
                             />
                             );
                         })}

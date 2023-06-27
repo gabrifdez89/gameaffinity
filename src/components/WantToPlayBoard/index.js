@@ -10,7 +10,9 @@ function WantToPlayBoard({
     setWantToPlaySearchValue,
     wantToPlayGames,
     setWantToPlayGames,
-    openGameDetails
+    openGameDetails,
+    playedGames,
+    setPlayedGames
 }) {
     return (
         <>   
@@ -30,6 +32,8 @@ function WantToPlayBoard({
                                 openGameDetails={openGameDetails}
                                 wantToPlayGames={wantToPlayGames}
                                 setWantToPlayGames={setWantToPlayGames}
+                                playedGames={playedGames}
+                                setPlayedGames={setPlayedGames}
                             />);})
                     : Object.values(wantToPlayGames).map((game) => {
                         return (
@@ -39,6 +43,8 @@ function WantToPlayBoard({
                                 openGameDetails={openGameDetails}
                                 wantToPlayGames={wantToPlayGames}
                                 setWantToPlayGames={setWantToPlayGames}
+                                playedGames={playedGames}
+                                setPlayedGames={setPlayedGames}
                             />);})}
                 </GamesList>
             </>}
