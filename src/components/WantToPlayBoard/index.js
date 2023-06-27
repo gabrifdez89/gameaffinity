@@ -14,32 +14,34 @@ function WantToPlayBoard({
 }) {
     return (
         <>   
-            <SearchBar
-                searchValue={wantToPlaySearchValue}
-                setSearchValue={setWantToPlaySearchValue}
-            />
             {Object.keys(wantToPlayGames).length > 0 &&
-            <GamesList>
-                {wantToPlaySearchValue.length > 0
-                ? Object.values(wantToPlayGames).filter(g => g.name.toLowerCase().includes(wantToPlaySearchValue.toLowerCase())).map((game) => {
-                    return (
-                        <GameCard 
-                            game={game}
-                            key={game.id}
-                            openGameDetails={openGameDetails}
-                            wantToPlayGames={wantToPlayGames}
-                            setWantToPlayGames={setWantToPlayGames}
-                        />);})
-                : Object.values(wantToPlayGames).map((game) => {
-                    return (
-                        <GameCard 
-                            game={game}
-                            key={game.id}
-                            openGameDetails={openGameDetails}
-                            wantToPlayGames={wantToPlayGames}
-                            setWantToPlayGames={setWantToPlayGames}
-                        />);})}
-            </GamesList>}
+            <>
+                <SearchBar
+                    searchValue={wantToPlaySearchValue}
+                    setSearchValue={setWantToPlaySearchValue}
+                />
+                <GamesList>
+                    {wantToPlaySearchValue.length > 0
+                    ? Object.values(wantToPlayGames).filter(g => g.name.toLowerCase().includes(wantToPlaySearchValue.toLowerCase())).map((game) => {
+                        return (
+                            <GameCard 
+                                game={game}
+                                key={game.id}
+                                openGameDetails={openGameDetails}
+                                wantToPlayGames={wantToPlayGames}
+                                setWantToPlayGames={setWantToPlayGames}
+                            />);})
+                    : Object.values(wantToPlayGames).map((game) => {
+                        return (
+                            <GameCard 
+                                game={game}
+                                key={game.id}
+                                openGameDetails={openGameDetails}
+                                wantToPlayGames={wantToPlayGames}
+                                setWantToPlayGames={setWantToPlayGames}
+                            />);})}
+                </GamesList>
+            </>}
             {Object.keys(wantToPlayGames).length === 0 &&
             <EmptyWantToPlayGames />}
         </>
