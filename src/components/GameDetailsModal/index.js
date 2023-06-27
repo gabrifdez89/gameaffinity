@@ -58,7 +58,8 @@ function GameDetailsModal({
                 width={700}
                 centered={true}>
                     <div className="GameDetailsModalHeader">
-                        <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>
+                        {gameDetails.metacritic &&
+                        <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>}
                         {wantToPlayGames[gameDetails.slug]
                         ? 
                         <div className="GameDetailsModalWantToPlaySaved" onClick={removeGameFromWantToPlay}>
