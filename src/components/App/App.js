@@ -9,6 +9,7 @@ import { GameDetailsModal } from '../GameDetailsModal';
 import { useFetchGameDetailsScreenshots } from '../../hooks/useFetchGameDetailsScreenshots';
 import { useFetchWantToPlayGames } from '../../hooks/useFetchWantToPlayGames';
 import { SearchBoard } from '../SearchBoard';
+import { WantToPlayBoard } from '../WantToPlayBoard';
 import './App.css';
 
 function App() {
@@ -16,11 +17,12 @@ function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [wantToPlaySearchValue, setWantToPlaySearchValue] = useState('');
   const [gameDetailsSlug, setGameDetailsSlug] = useState('');
   const [gameDetails, setGameDetails] = useState();
   const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [wantToPlayGamesSlugs, setWantToPlayGamesSlugs] = useState([]);
+  const [wantToPlayGames, setWantToPlayGames] = useState({});
 
   useFetchLatestGamesReleased({ setLatestGamesReleased });
   useFetchSearchedGames({ 
@@ -36,7 +38,7 @@ function App() {
     gameSlug: gameDetailsSlug
   });
   useFetchWantToPlayGames({
-    setWantToPlayGamesSlugs: setWantToPlayGamesSlugs
+    setWantToPlayGames: setWantToPlayGames
   });
 
   const openGameDetails = function(gameSlug) {
@@ -52,22 +54,34 @@ function App() {
           currentTopBarOption={currentTopBarOption}
           setCurrentTopBarOption={setCurrentTopBarOption}
         />
+        {currentTopBarOption === 'search' && 
         <SearchBoard
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           searchedGames={searchedGames}
           openGameDetails={openGameDetails}
-          wantToPlayGamesSlugs={wantToPlayGamesSlugs}
-          setWantToPlayGamesSlugs={setWantToPlayGamesSlugs}
+          wantToPlayGames={wantToPlayGames}
+          setWantToPlayGames={setWantToPlayGames}
           latestGamesReleased={latestGamesReleased}
+        />}
+        {currentTopBarOption === 'want-to-play' &&
+        <WantToPlayBoard
+          wantToPlaySearchValue={wantToPlaySearchValue}
+          setWantToPlaySearchValue={setWantToPlaySearchValue}
+          wantToPlayGames={wantToPlayGames}
+          setWantToPlayGames={setWantToPlayGames}
+          openGameDetails={openGameDetails}
         />
+        }
         <GameDetailsModal
           gameDetails={gameDetails}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           gameDetailsScreenshots={gameDetailsScreenshots}
-          wantToPlayGamesSlugs={wantToPlayGamesSlugs}
-          setWantToPlayGamesSlugs={setWantToPlayGamesSlugs}
+          wantToPlayGames={wantToPlayGames}
+          setWantToPlayGames={setWantToPlayGames}
+          searchedGames={searchedGames}
+          latestGamesReleased={latestGamesReleased}
         />
       </MainContainer>
     </div>

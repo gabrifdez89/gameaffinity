@@ -9,21 +9,24 @@ function GameDetailsModal({
     isModalOpen,
     setIsModalOpen,
     gameDetailsScreenshots,
-    wantToPlayGamesSlugs,
-    setWantToPlayGamesSlugs }) {
+    wantToPlayGames,
+    setWantToPlayGames,
+    searchedGames,
+    latestGamesReleased }) {
 
         const addGameToWantToPlay = (event) => {
-            let copy = wantToPlayGamesSlugs.slice();
-            copy.push(gameDetails.slug);
-            setWantToPlayGamesSlugs(copy);
-            localStorage.setItem('want_to_play_games_slugs', JSON.stringify(copy));
+            let copy = JSON.parse(JSON.stringify(wantToPlayGames));
+            let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
+            copy[gameDetails.slug] = game;
+            setWantToPlayGames(copy);
+            localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
         
         const removeGameFromWantToPlay = (event) => {
-            let copy = wantToPlayGamesSlugs.slice();
-            copy.splice(copy.indexOf(gameDetails.slug), 1);
-            setWantToPlayGamesSlugs(copy);
-            localStorage.setItem('want_to_play_games_slugs', JSON.stringify(copy));
+            let copy = JSON.parse(JSON.stringify(wantToPlayGames));
+            delete copy[gameDetails.slug];
+            setWantToPlayGames(copy);
+            localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
     
         return(
@@ -39,7 +42,7 @@ function GameDetailsModal({
                 centered={true}>
                     <div className="GameDetailsModalMetacriticAndWantToPlayMoreContainer">
                         <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>
-                        {wantToPlayGamesSlugs.includes(gameDetails.slug)
+                        {wantToPlayGames[gameDetails.slug]
                         ? 
                         <div className="GameDetailsModalWantToPlaySaved" onClick={removeGameFromWantToPlay}>
                             <MinusCircleOutlined className="GameDetailsModalWantToPlayIcon" />
