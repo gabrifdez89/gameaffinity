@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/gameaffinity/static/css/main.d43c1b39.css",
+    "main.js": "/gameaffinity/static/js/main.b07e6c9e.js",
+    "index.html": "/gameaffinity/index.html",
+    "main.d43c1b39.css.map": "/gameaffinity/static/css/main.d43c1b39.css.map",
+    "main.b07e6c9e.js.map": "/gameaffinity/static/js/main.b07e6c9e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d43c1b39.css",
+    "static/js/main.b07e6c9e.js"
+  ]
+}
