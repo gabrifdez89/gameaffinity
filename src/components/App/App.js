@@ -11,8 +11,9 @@ import { useFetchWantToPlayGames } from '../../hooks/useFetchWantToPlayGames';
 import { useFetchPlayedGames } from '../../hooks/useFetchPlayedGames';
 import { SearchBoard } from '../SearchBoard';
 import { WantToPlayBoard } from '../WantToPlayBoard';
-import './App.css';
 import { PlayedBoard } from '../PlayedBoard';
+import { PlayedGameRatingModal } from '../PlayedGameRatingModal';
+import './App.css';
 
 function App() {
   const [currentTopBarOption, setCurrentTopBarOption] = useState('search');
@@ -27,6 +28,10 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
+  const [isPlayedGameRatingModalOpen, setIsPlayedGameRatingModalOpen] = useState(false);
+  const [playedGameRating, setPlayedGameRating] = useState(0);
+  const [playedGameReview, setPlayedGameReview] = useState('');
+  const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
 
   useFetchLatestGamesReleased({ setLatestGamesReleased });
   useFetchSearchedGames({ 
@@ -72,6 +77,8 @@ function App() {
           latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />}
         {currentTopBarOption === 'want-to-play' &&
         <WantToPlayBoard
@@ -82,6 +89,8 @@ function App() {
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         }
         {currentTopBarOption === 'played' &&
@@ -93,6 +102,8 @@ function App() {
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         }
         <GameDetailsModal
@@ -104,6 +115,20 @@ function App() {
           setWantToPlayGames={setWantToPlayGames}
           searchedGames={searchedGames}
           latestGamesReleased={latestGamesReleased}
+          playedGames={playedGames}
+          setPlayedGames={setPlayedGames}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+        />
+        <PlayedGameRatingModal
+          isPlayedGameRatingModalOpen={isPlayedGameRatingModalOpen}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          playedGameRating={playedGameRating}
+          setPlayedGameRating={setPlayedGameRating}
+          playedGameReview={playedGameReview}
+          setPlayedGameReview={setPlayedGameReview}
+          gameForPlayedGameRatingModal={gameForPlayedGameRatingModal}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />

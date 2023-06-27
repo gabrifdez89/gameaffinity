@@ -12,7 +12,9 @@ function WantToPlayBoard({
     setWantToPlayGames,
     openGameDetails,
     playedGames,
-    setPlayedGames
+    setPlayedGames,
+    setIsPlayedGameRatingModalOpen,
+    setGameForPlayedGameRatingModal
 }) {
     return (
         <>   
@@ -34,6 +36,8 @@ function WantToPlayBoard({
                                 setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
+                                setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+                                setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
                             />);})
                     : Object.values(wantToPlayGames).map((game) => {
                         return (
@@ -45,6 +49,8 @@ function WantToPlayBoard({
                                 setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
+                                setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+                                setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
                             />);})}
                 </GamesList>
             </>}

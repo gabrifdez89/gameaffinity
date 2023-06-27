@@ -9,7 +9,9 @@ function GameCard({
   wantToPlayGames,
   setWantToPlayGames,
   playedGames,
-  setPlayedGames }) {
+  setPlayedGames,
+  setIsPlayedGameRatingModalOpen,
+  setGameForPlayedGameRatingModal }) {
 
   const addGameToWantToPlay = (event) => {
     let copy = JSON.parse(JSON.stringify(wantToPlayGames));
@@ -27,19 +29,17 @@ function GameCard({
     event.stopPropagation();
   };
 
-  const addGameToPlayedGames = (event) => {
-    let copy = JSON.parse(JSON.stringify(playedGames));
-    copy[game.slug] = game;
-    setPlayedGames(copy);
-    localStorage.setItem('played_games', JSON.stringify(copy));
-    event.stopPropagation();
-  };
-
   const removeGameFromPlayedGames = (event) => {
     let copy = JSON.parse(JSON.stringify(playedGames));
     delete copy[game.slug];
     setPlayedGames(copy);
     localStorage.setItem('played_games', JSON.stringify(copy));
+    event.stopPropagation();
+  };
+
+  const openPlayedGameRatingModal = (event) => {
+    setGameForPlayedGameRatingModal(game);
+    setIsPlayedGameRatingModalOpen(true);
     event.stopPropagation();
   };
 
@@ -53,7 +53,7 @@ function GameCard({
       : <PlusCircleOutlined className="GameCardWantToPlayIcon" onClick={addGameToWantToPlay} />}
       {playedGames[game.slug]
       ? <CloseCircleOutlined className="GameCardPlayedIconSaved" onClick={removeGameFromPlayedGames} />
-      : <CheckCircleOutlined className="GameCardPlayedIcon" onClick={addGameToPlayedGames} />}
+      : <CheckCircleOutlined className="GameCardPlayedIcon" onClick={openPlayedGameRatingModal} />}
     </div>
   );
 }

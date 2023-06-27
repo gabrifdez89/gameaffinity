@@ -14,7 +14,9 @@ function GameDetailsModal({
     searchedGames,
     latestGamesReleased,
     playedGames,
-    setPlayedGames }) {
+    setPlayedGames,
+    setIsPlayedGameRatingModalOpen,
+    setGameForPlayedGameRatingModal }) {
 
         const addGameToWantToPlay = () => {
             let copy = JSON.parse(JSON.stringify(wantToPlayGames));
@@ -31,20 +33,18 @@ function GameDetailsModal({
             localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
 
-        const addGameToPlayedGames = () => {
-            let copy = JSON.parse(JSON.stringify(playedGames));
-            let game = searchedGames.concat(latestGamesReleased).concat(Object.values(wantToPlayGames)).find(g => g.slug === gameDetails.slug);
-            copy[gameDetails.slug] = game;
-            setPlayedGames(copy);
-            localStorage.setItem('played_games', JSON.stringify(copy));
-          };
+        const openPlayedGameRatingModal = () => {
+            let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
+            setGameForPlayedGameRatingModal(game);
+            setIsPlayedGameRatingModalOpen(true);
+        };
         
-          const removeGameFromPlayedGames = () => {
+        const removeGameFromPlayedGames = () => {
             let copy = JSON.parse(JSON.stringify(playedGames));
             delete copy[gameDetails.slug];
             setPlayedGames(copy);
             localStorage.setItem('played_games', JSON.stringify(copy));
-          };
+        };
     
         return(
         gameDetails
@@ -78,7 +78,7 @@ function GameDetailsModal({
                             <span className="GameDetailsModalPlayedGamesText">Unmark as played</span>
                         </div>
                         : 
-                        <div className="GameDetailsModalPlayedGames" onClick={addGameToPlayedGames}>
+                        <div className="GameDetailsModalPlayedGames" onClick={openPlayedGameRatingModal}>
                             <CheckCircleOutlined className="GameDetailsModalPlayedGamesIcon" />
                             <span className="GameDetailsModalPlayedGamesText">Mark as played</span>
                         </div>}
