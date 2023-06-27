@@ -12,6 +12,7 @@ import { useFetchPlayedGames } from '../../hooks/useFetchPlayedGames';
 import { SearchBoard } from '../SearchBoard';
 import { WantToPlayBoard } from '../WantToPlayBoard';
 import './App.css';
+import { PlayedBoard } from '../PlayedBoard';
 
 function App() {
   const [currentTopBarOption, setCurrentTopBarOption] = useState('search');
@@ -19,6 +20,7 @@ function App() {
   const [searchedGames, setSearchedGames] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [wantToPlaySearchValue, setWantToPlaySearchValue] = useState('');
+  const [playedGamesSearchValue, setPlayedGamesSearchValue] = useState('');
   const [gameDetailsSlug, setGameDetailsSlug] = useState('');
   const [gameDetails, setGameDetails] = useState();
   const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
@@ -75,6 +77,17 @@ function App() {
         <WantToPlayBoard
           wantToPlaySearchValue={wantToPlaySearchValue}
           setWantToPlaySearchValue={setWantToPlaySearchValue}
+          wantToPlayGames={wantToPlayGames}
+          setWantToPlayGames={setWantToPlayGames}
+          openGameDetails={openGameDetails}
+          playedGames={playedGames}
+          setPlayedGames={setPlayedGames}
+        />
+        }
+        {currentTopBarOption === 'played' &&
+        <PlayedBoard
+          playedGamesSearchValue={playedGamesSearchValue}
+          setPlayedGamesSearchValue={setPlayedGamesSearchValue}
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
           openGameDetails={openGameDetails}
