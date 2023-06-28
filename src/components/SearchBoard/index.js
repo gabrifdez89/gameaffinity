@@ -15,7 +15,8 @@ function SearchBoard({
     playedGames,
     setPlayedGames,
     setIsPlayedGameRatingModalOpen,
-    setGameForPlayedGameRatingModal
+    setGameForPlayedGameRatingModal,
+    setIsDeletePlayedGameConfirmationModalOpen
 }) {
     return (
         <>   
@@ -37,6 +38,7 @@ function SearchBoard({
                         setPlayedGames={setPlayedGames}
                         setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
                         setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+                        setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
                     />
                     );
                     })
@@ -52,6 +54,7 @@ function SearchBoard({
                                 setPlayedGames={setPlayedGames}
                                 setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
                                 setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+                                setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
                             />
                             );
                         })}

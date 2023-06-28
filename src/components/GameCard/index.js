@@ -11,7 +11,8 @@ function GameCard({
   playedGames,
   setPlayedGames,
   setIsPlayedGameRatingModalOpen,
-  setGameForPlayedGameRatingModal }) {
+  setGameForPlayedGameRatingModal,
+  setIsDeletePlayedGameConfirmationModalOpen }) {
 
   const addGameToWantToPlay = (event) => {
     let copy = JSON.parse(JSON.stringify(wantToPlayGames));
@@ -29,11 +30,9 @@ function GameCard({
     event.stopPropagation();
   };
 
-  const removeGameFromPlayedGames = (event) => {
-    let copy = JSON.parse(JSON.stringify(playedGames));
-    delete copy[game.slug];
-    setPlayedGames(copy);
-    localStorage.setItem('played_games', JSON.stringify(copy));
+  const openDeletePlayedGameConfirmationModal = (event) => {
+    setGameForPlayedGameRatingModal(game);
+    setIsDeletePlayedGameConfirmationModalOpen(true);
     event.stopPropagation();
   };
 
@@ -47,13 +46,13 @@ function GameCard({
     <div className="GameCard" onClick={() => openGameDetails(game.slug)}>
       <img className="GameCardImage" alt="" src={game.background_image} />
       {game.metacritic ? (<h3 className="GameCardRating">{game.metacritic}</h3>): ('')}
-      {game.own_rating ? (<h3 className="GameCardOwnRating">{game.own_rating}</h3>): ('')}
+      {game.own_rating !== undefined ? (<h3 className={game.own_rating === 100 ? "GameCardOwnRating-100" : "GameCardOwnRating"}>{game.own_rating}</h3>): ('')}
       <h2 className="GameCardTitle">{game.name}</h2>
       {wantToPlayGames[game.slug]
       ? <MinusCircleOutlined className="GameCardWantToPlayIconSaved" onClick={removeGameFromWantToPlay} /> 
       : <PlusCircleOutlined className="GameCardWantToPlayIcon" onClick={addGameToWantToPlay} />}
       {playedGames[game.slug]
-      ? <CloseCircleOutlined className="GameCardPlayedIconSaved" onClick={removeGameFromPlayedGames} />
+      ? <CloseCircleOutlined className="GameCardPlayedIconSaved" onClick={openDeletePlayedGameConfirmationModal} />
       : <CheckCircleOutlined className="GameCardPlayedIcon" onClick={openPlayedGameRatingModal} />}
     </div>
   );

@@ -109,9 +109,24 @@
     left: 0;
     color: var(--text-color);
     font-size: 24px;
-    text-align: left;
+    text-align: center;
     margin: 0;
     padding: 10px;
     z-index: 1;
+    width: 28px;
+    background-color: var(--accent-color);
+}
+
+.GameCardOwnRating-100 {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    color: var(--text-color);
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    z-index: 1;
+    width: 28px;
     background-color: var(--accent-color);
 }

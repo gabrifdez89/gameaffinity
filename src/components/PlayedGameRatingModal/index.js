@@ -50,7 +50,7 @@ function PlayedGameRatingModal({
             width={300}
             centered={true}
             zIndex={1001}>
-                <span>Your rating: </span><Slider value={playedGameRating} tooltip={{ formatter }} onChange={setRating}/>
+                <span>Your rating: </span><Slider value={playedGameRating} tooltip={{ formatter }} onChange={setRating} railStyle={{ backgroundColor: '#FFFFFF' }} />
                 <span>Your review: </span><TextArea value={playedGameReview} rows={4} placeholder="maxLength is 250" maxLength={250} onChange={setReview} />
             </Modal>
     );
