@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 
-function useFetchLatestGamesReleased({ setLatestGamesReleased }) {
+function useFetchLatestGamesReleased({
+  setLatestGamesReleased,
+  playedGames }) {
   useEffect(() => {
     const api = axios.create({
       baseURL: 'https://api.rawg.io/api/',
@@ -24,11 +26,18 @@ function useFetchLatestGamesReleased({ setLatestGamesReleased }) {
     }
 
     getLatestGamesReleased().then((latestGamesReleased) => {
-      setLatestGamesReleased(latestGamesReleased);
+      const latestGamesReleasedWithOwnData = latestGamesReleased.map((game) => {
+        if (playedGames[game.slug]) {
+          game.own_rating = playedGames[game.slug]['own_rating'];
+          game.own_review = playedGames[game.slug]['own_review'];
+        }
+        return game;
+      });
+      setLatestGamesReleased(latestGamesReleasedWithOwnData);
     }).catch((err) => {
       console.log(err);
     });
-  }, [setLatestGamesReleased]);
+  }, [setLatestGamesReleased, playedGames]);
 }
 
 export { useFetchLatestGamesReleased };

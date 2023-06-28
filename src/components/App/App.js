@@ -33,21 +33,26 @@ function App() {
   const [playedGameReview, setPlayedGameReview] = useState('');
   const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
 
-  useFetchLatestGamesReleased({ setLatestGamesReleased });
+  useFetchLatestGamesReleased({ 
+    setLatestGamesReleased: setLatestGamesReleased,
+    playedGames: playedGames });
   useFetchSearchedGames({ 
     setSearchedGames: setSearchedGames,
-    searchValue: searchValue
+    searchValue: searchValue,
+    playedGames: playedGames
   });
   useFetchGameDetails({
     setGameDetails: setGameDetails,
-    gameSlug: gameDetailsSlug
+    gameSlug: gameDetailsSlug,
+    playedGames: playedGames
   });
   useFetchGameDetailsScreenshots({
     setGameDetailsScreenshots: setGameDetailsScreenshots,
     gameSlug: gameDetailsSlug
   });
   useFetchWantToPlayGames({
-    setWantToPlayGames: setWantToPlayGames
+    setWantToPlayGames: setWantToPlayGames,
+    playedGames: playedGames
   });
   useFetchPlayedGames({
     setPlayedGames: setPlayedGames

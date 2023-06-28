@@ -5,12 +5,12 @@
     color: var(--text-color);
 
     .ant-modal-header {
-        background-color: var(--background-color);
+        background-color: var(--modal-background-color);
         padding-top: 20px;
     }
 
     .ant-modal-content {
-        background-color: var(--background-color);
+        background-color: var(--modal-background-color);
         
         .ant-modal-body p>span {
             color: var(--main-color);

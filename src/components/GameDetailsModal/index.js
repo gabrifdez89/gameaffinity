@@ -60,6 +60,10 @@ function GameDetailsModal({
                     <div className="GameDetailsModalHeader">
                         {gameDetails.metacritic &&
                         <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>}
+                        {gameDetails.own_rating &&
+                        <p className="GameDetailsModalOwnRating"><span>My rating: </span>{gameDetails.own_rating}%</p>}
+                        {gameDetails.own_review &&
+                        <p className="GameDetailsModalOwnReview"><span>My review: </span>"{gameDetails.own_review}"</p>}
                         {wantToPlayGames[gameDetails.slug]
                         ? 
                         <div className="GameDetailsModalWantToPlaySaved" onClick={removeGameFromWantToPlay}>

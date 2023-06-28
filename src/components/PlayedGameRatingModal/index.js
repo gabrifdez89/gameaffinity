@@ -16,12 +16,11 @@ function PlayedGameRatingModal({
 }) {
     const formatter = (value) => `${value}%`;
     const { TextArea } = Input;
-    const setRating = (event) => {
-        console.log(event.value);
-        setPlayedGameRating(event.value);
+    const setRating = (value) => {
+        setPlayedGameRating(value);
     };
     const setReview = (event) => {
-        setPlayedGameReview(event.value);
+        setPlayedGameReview(event.target.value);
     };
     const cancel = () => {
         setIsPlayedGameRatingModalOpen(false);

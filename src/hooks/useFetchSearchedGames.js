@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 
-function useFetchSearchedGames({ setSearchedGames, searchValue }) {
+function useFetchSearchedGames({
+  setSearchedGames,
+  searchValue,
+  playedGames }) {
     useEffect(() => {
         const api = axios.create({
           baseURL: 'https://api.rawg.io/api/',
@@ -21,12 +24,19 @@ function useFetchSearchedGames({ setSearchedGames, searchValue }) {
     
         if (searchValue.length > 0) {
           getSearchedGames().then((searchedGames) => {
-            setSearchedGames(searchedGames);
+            const searchedGamesWithOwnData = searchedGames.map((game) => {
+              if (playedGames[game.slug]) {
+                game.own_rating = playedGames[game.slug]['own_rating'];
+                game.own_review = playedGames[game.slug]['own_review'];
+              }
+              return game;
+            });
+            setSearchedGames(searchedGamesWithOwnData);
           }).catch((err) => {
             console.log(err);
           });
         }
-    }, [setSearchedGames, searchValue]);
+    }, [setSearchedGames, searchValue, playedGames]);
 }
 
 export { useFetchSearchedGames };

@@ -47,6 +47,7 @@ function GameCard({
     <div className="GameCard" onClick={() => openGameDetails(game.slug)}>
       <img className="GameCardImage" alt="" src={game.background_image} />
       {game.metacritic ? (<h3 className="GameCardRating">{game.metacritic}</h3>): ('')}
+      {game.own_rating ? (<h3 className="GameCardOwnRating">{game.own_rating}</h3>): ('')}
       <h2 className="GameCardTitle">{game.name}</h2>
       {wantToPlayGames[game.slug]
       ? <MinusCircleOutlined className="GameCardWantToPlayIconSaved" onClick={removeGameFromWantToPlay} /> 
