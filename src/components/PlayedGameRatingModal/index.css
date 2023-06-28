@@ -1,0 +1,42 @@
+.PlayedGameRatingModal {
+    font-family: -apple-system, BlinkMacSystemFont, 'Orbit', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    serif;
+    color: var(--text-color);
+
+    .ant-modal-header {
+        background-color: var(--modal-background-color);
+        padding-top: 20px;
+    }
+
+    .ant-modal-content {
+        background-color: var(--modal-background-color);
+        
+        .ant-modal-body p>span {
+            color: var(--main-color);
+        }
+    }
+
+    .ant-modal-title {
+        color: var(--text-color);
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .ant-modal-footer {
+        .ant-btn {
+            font-family: -apple-system, BlinkMacSystemFont, 'Orbit', 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            serif;
+        }
+
+        .ant-btn-default {
+            background-color: var(--text-color);
+            color: var(--main-container-background-color);
+        }
+
+        .ant-btn-primary {
+            background-color: var(--main-color);
+        }
+    }
+}

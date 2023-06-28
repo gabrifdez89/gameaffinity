@@ -13,7 +13,10 @@ function SearchBoard({
     setWantToPlayGames,
     latestGamesReleased,
     playedGames,
-    setPlayedGames
+    setPlayedGames,
+    setIsPlayedGameRatingModalOpen,
+    setGameForPlayedGameRatingModal,
+    setIsDeletePlayedGameConfirmationModalOpen
 }) {
     return (
         <>   
@@ -33,6 +36,9 @@ function SearchBoard({
                         setWantToPlayGames={setWantToPlayGames}
                         playedGames={playedGames}
                         setPlayedGames={setPlayedGames}
+                        setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+                        setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+                        setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
                     />
                     );
                     })
@@ -46,6 +52,9 @@ function SearchBoard({
                                 setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
+                                setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+                                setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+                                setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
                             />
                             );
                         })}

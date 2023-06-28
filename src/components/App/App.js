@@ -11,8 +11,10 @@ import { useFetchWantToPlayGames } from '../../hooks/useFetchWantToPlayGames';
 import { useFetchPlayedGames } from '../../hooks/useFetchPlayedGames';
 import { SearchBoard } from '../SearchBoard';
 import { WantToPlayBoard } from '../WantToPlayBoard';
-import './App.css';
 import { PlayedBoard } from '../PlayedBoard';
+import { PlayedGameRatingModal } from '../PlayedGameRatingModal';
+import { DeletePlayedGameConfirmationModal } from '../DeletePlayedGameConfirmationModal';
+import './App.css';
 
 function App() {
   const [currentTopBarOption, setCurrentTopBarOption] = useState('search');
@@ -27,22 +29,32 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
+  const [isPlayedGameRatingModalOpen, setIsPlayedGameRatingModalOpen] = useState(false);
+  const [playedGameRating, setPlayedGameRating] = useState(0);
+  const [playedGameReview, setPlayedGameReview] = useState('');
+  const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
+  const [isDeletePlayedGameConfirmationModalOpen, setIsDeletePlayedGameConfirmationModalOpen] = useState(false);
 
-  useFetchLatestGamesReleased({ setLatestGamesReleased });
+  useFetchLatestGamesReleased({ 
+    setLatestGamesReleased: setLatestGamesReleased,
+    playedGames: playedGames });
   useFetchSearchedGames({ 
     setSearchedGames: setSearchedGames,
-    searchValue: searchValue
+    searchValue: searchValue,
+    playedGames: playedGames
   });
   useFetchGameDetails({
     setGameDetails: setGameDetails,
-    gameSlug: gameDetailsSlug
+    gameSlug: gameDetailsSlug,
+    playedGames: playedGames
   });
   useFetchGameDetailsScreenshots({
     setGameDetailsScreenshots: setGameDetailsScreenshots,
     gameSlug: gameDetailsSlug
   });
   useFetchWantToPlayGames({
-    setWantToPlayGames: setWantToPlayGames
+    setWantToPlayGames: setWantToPlayGames,
+    playedGames: playedGames
   });
   useFetchPlayedGames({
     setPlayedGames: setPlayedGames
@@ -72,6 +84,9 @@ function App() {
           latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />}
         {currentTopBarOption === 'want-to-play' &&
         <WantToPlayBoard
@@ -82,6 +97,9 @@ function App() {
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />
         }
         {currentTopBarOption === 'played' &&
@@ -93,6 +111,9 @@ function App() {
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />
         }
         <GameDetailsModal
@@ -106,6 +127,28 @@ function App() {
           latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
+        />
+        <PlayedGameRatingModal
+          isPlayedGameRatingModalOpen={isPlayedGameRatingModalOpen}
+          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
+          playedGameRating={playedGameRating}
+          setPlayedGameRating={setPlayedGameRating}
+          playedGameReview={playedGameReview}
+          setPlayedGameReview={setPlayedGameReview}
+          gameForPlayedGameRatingModal={gameForPlayedGameRatingModal}
+          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
+          playedGames={playedGames}
+          setPlayedGames={setPlayedGames}
+        />
+        <DeletePlayedGameConfirmationModal
+          gameForPlayedGameRatingModal={gameForPlayedGameRatingModal}
+          playedGames={playedGames}
+          setPlayedGames={setPlayedGames}
+          isDeletePlayedGameConfirmationModalOpen={isDeletePlayedGameConfirmationModalOpen}
+          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />
       </MainContainer>
     </div>

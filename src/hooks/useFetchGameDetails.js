@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 
-function useFetchGameDetails({ setGameDetails, gameSlug }) {
+function useFetchGameDetails({
+  setGameDetails,
+  gameSlug,
+  playedGames }) {
     useEffect(() => {
         const api = axios.create({
           baseURL: 'https://api.rawg.io/api/',
@@ -21,12 +24,16 @@ function useFetchGameDetails({ setGameDetails, gameSlug }) {
     
         if (gameSlug) {
             getGameDetails().then((gameDetails) => {
-            setGameDetails(gameDetails);
+              if (playedGames[gameDetails.slug]) {
+                gameDetails.own_rating = playedGames[gameDetails.slug]['own_rating'];
+                gameDetails.own_review = playedGames[gameDetails.slug]['own_review'];
+              }
+              setGameDetails(gameDetails);
           }).catch((err) => {
             console.log(err);
           });
         }
-    }, [setGameDetails, gameSlug]);
+    }, [setGameDetails, gameSlug, playedGames]);
 }
 
 export { useFetchGameDetails };
