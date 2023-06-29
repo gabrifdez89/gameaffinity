@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { MainContainer } from '../MainContainer';
 import { Header } from '../Header';
-import { TopBar } from '../TopBar';
 import { useFetchLatestGamesReleased } from '../../hooks/useFetchLatestGamesReleased';
 import { useFetchSearchedGames } from '../../hooks/useFetchSearchedGames';
 import { useFetchGameDetails } from '../../hooks/useFetchGameDetails';
@@ -14,10 +13,11 @@ import { WantToPlayBoard } from '../WantToPlayBoard';
 import { PlayedBoard } from '../PlayedBoard';
 import { PlayedGameRatingModal } from '../PlayedGameRatingModal';
 import { DeletePlayedGameConfirmationModal } from '../DeletePlayedGameConfirmationModal';
-import './App.css';
+import './index.css';
+import { useSelector } from 'react-redux';
+import { Topbar } from '../../features/topbar/Topbar';
 
 function App() {
-  const [currentTopBarOption, setCurrentTopBarOption] = useState('search');
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -34,6 +34,7 @@ function App() {
   const [playedGameReview, setPlayedGameReview] = useState('');
   const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
   const [isDeletePlayedGameConfirmationModalOpen, setIsDeletePlayedGameConfirmationModalOpen] = useState(false);
+  const topbar = useSelector(state => state.topbar.value);
 
   useFetchLatestGamesReleased({ 
     setLatestGamesReleased: setLatestGamesReleased,
@@ -69,11 +70,8 @@ function App() {
     <div className="App">
       <MainContainer>
         <Header />
-        <TopBar
-          currentTopBarOption={currentTopBarOption}
-          setCurrentTopBarOption={setCurrentTopBarOption}
-        />
-        {currentTopBarOption === 'search' && 
+        <Topbar />
+        {topbar === 'search' && 
         <SearchBoard
           searchValue={searchValue}
           setSearchValue={setSearchValue}
@@ -88,7 +86,7 @@ function App() {
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
           setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />}
-        {currentTopBarOption === 'want-to-play' &&
+        {topbar === 'want-to-play' &&
         <WantToPlayBoard
           wantToPlaySearchValue={wantToPlaySearchValue}
           setWantToPlaySearchValue={setWantToPlaySearchValue}
@@ -102,7 +100,7 @@ function App() {
           setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />
         }
-        {currentTopBarOption === 'played' &&
+        {topbar === 'played' &&
         <PlayedBoard
           playedGamesSearchValue={playedGamesSearchValue}
           setPlayedGamesSearchValue={setPlayedGamesSearchValue}
