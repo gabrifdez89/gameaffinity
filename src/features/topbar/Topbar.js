@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setTopbarSearch, setTopbarWantToPlay, setTopbarPlayed } from './topbarSlice';
+import { setTopbar } from './topbarSlice';
 import { Menu } from 'antd';
 import { SearchOutlined, PlusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import './index.css';
@@ -27,13 +27,7 @@ function Topbar() {
     ];
 
     const handleClick = function (e) {
-        if (e.key === 'search') {
-            dispatch(setTopbarSearch());
-        } else if (e.key === 'want-to-play') {
-            dispatch(setTopbarWantToPlay());
-        } else if(e.key === 'played') {
-            dispatch(setTopbarPlayed());
-        }
+        dispatch(setTopbar(e.key));
     }
 
     return (
