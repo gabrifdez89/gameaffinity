@@ -13,6 +13,7 @@ import gameForPlayedGameRatingModalReducer from './features/gameForPlayedGameRat
 import gameDetailsReducer from './features/gameDetails/gameDetailsSlice';
 import gameDetailsScreenshotsReducer from './features/gameDetailsScreenshots/gameDetailsScreenshotsSlice';
 import latestGamesReleasedReducer from './features/latestGamesReleased/latestGamesReleasedSlice';
+import searchedGamesReducer from './features/searchedGames/searchedGamesSlice';
 
 const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ const store = configureStore({
     gameDetails: gameDetailsReducer,
     gameDetailsScreenshots: gameDetailsScreenshotsReducer,
     latestGamesReleased: latestGamesReleasedReducer,
+    searchedGames: searchedGamesReducer,
   }
 });
 

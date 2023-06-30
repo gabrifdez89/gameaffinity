@@ -21,9 +21,9 @@ import { setGameDetailsSlug } from '../../features/gameDetailsSlug/gameDetailsSl
 import { setGameDetails } from '../../features/gameDetails/gameDetailsSlice';
 import { setGameDetailsScreenshots } from '../../features/gameDetailsScreenshots/gameDetailsScreenshotsSlice';
 import { setLatestGamesReleased } from '../../features/latestGamesReleased/latestGamesReleasedSlice';
+import { setSearchedGames } from '../../features/searchedGames/searchedGamesSlice';
 
 function App() {
-  const [searchedGames, setSearchedGames] = useState([]);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
 
@@ -37,7 +37,7 @@ function App() {
     playedGames: playedGames });
   useFetchSearchedGames({
     searchValue: searchValue,
-    setSearchedGames: setSearchedGames,
+    setSearchedGames: (searchedGames) => { dispatch(setSearchedGames(searchedGames)) },
     playedGames: playedGames
   });
   useFetchGameDetails({
@@ -69,7 +69,6 @@ function App() {
         <Topbar />
         {topbar === 'search' && 
         <SearchBoard
-          searchedGames={searchedGames}
           openGameDetails={openGameDetails}
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
@@ -97,7 +96,6 @@ function App() {
         <GameDetailsModal
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
-          searchedGames={searchedGames}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />

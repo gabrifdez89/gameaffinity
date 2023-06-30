@@ -12,13 +12,13 @@ import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGam
 function GameDetailsModal({
     wantToPlayGames,
     setWantToPlayGames,
-    searchedGames,
     playedGames }) {
 
         const isModalOpen = useSelector(state => state.modalOpen.value);
         const gameDetails = useSelector(state => state.gameDetails.value);
         const gameDetailsScreenshots = useSelector(state => state.gameDetailsScreenshots.value);
         const latestGamesReleased = useSelector(state => state.latestGamesReleased.value);
+        const searchedGames = useSelector(state => state.searchedGames.value);
         const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {
