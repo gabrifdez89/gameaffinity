@@ -2,24 +2,27 @@ import React from 'react';
 import { Modal } from 'antd';
 
 import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
 
 function DeletePlayedGameConfirmationModal({
     gameForPlayedGameRatingModal,
     playedGames,
     setPlayedGames,
-    isDeletePlayedGameConfirmationModalOpen,
-    setIsDeletePlayedGameConfirmationModalOpen
 }) {
+    const isDeletePlayedGameConfirmationModalOpen = useSelector(state => state.deletePlayedGameConfirmationModalOpen.value);
+    const dispatch = useDispatch();
+
     const ok = () => {
         let copy = JSON.parse(JSON.stringify(playedGames));
         delete copy[gameForPlayedGameRatingModal.slug];
         setPlayedGames(copy);
         localStorage.setItem('played_games', JSON.stringify(copy));
-        setIsDeletePlayedGameConfirmationModalOpen(false);
+        dispatch(setDeletePlayedGameConfirmationModalOpen(false))
     }
 
     const cancel = () => {
-        setIsDeletePlayedGameConfirmationModalOpen(false);
+        dispatch(setDeletePlayedGameConfirmationModalOpen(false))
     }
 
     return (

@@ -3,6 +3,8 @@ import { Modal, Carousel } from 'antd';
 import { PlusCircleOutlined, MinusCircleOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import './index.css';
+import { useDispatch } from 'react-redux';
+import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
 
 function GameDetailsModal({
     gameDetails,
@@ -15,8 +17,9 @@ function GameDetailsModal({
     latestGamesReleased,
     playedGames,
     setIsPlayedGameRatingModalOpen,
-    setGameForPlayedGameRatingModal,
-    setIsDeletePlayedGameConfirmationModalOpen }) {
+    setGameForPlayedGameRatingModal }) {
+
+        const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {
             let copy = JSON.parse(JSON.stringify(wantToPlayGames));
@@ -42,7 +45,7 @@ function GameDetailsModal({
         const openDeletePlayedGameConfirmationModal = () => {
             let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
             setGameForPlayedGameRatingModal(game);
-            setIsDeletePlayedGameConfirmationModalOpen(true);
+            dispatch(setDeletePlayedGameConfirmationModalOpen(true));
         };
     
         return(

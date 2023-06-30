@@ -2,6 +2,8 @@ import React from 'react';
 import { PlusCircleOutlined, MinusCircleOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import './index.css';
+import { useDispatch } from 'react-redux';
+import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
 
 function GameCard({
   game,
@@ -9,10 +11,10 @@ function GameCard({
   wantToPlayGames,
   setWantToPlayGames,
   playedGames,
-  setPlayedGames,
   setIsPlayedGameRatingModalOpen,
-  setGameForPlayedGameRatingModal,
-  setIsDeletePlayedGameConfirmationModalOpen }) {
+  setGameForPlayedGameRatingModal }) {
+
+  const dispatch = useDispatch();
 
   const addGameToWantToPlay = (event) => {
     let copy = JSON.parse(JSON.stringify(wantToPlayGames));
@@ -32,7 +34,7 @@ function GameCard({
 
   const openDeletePlayedGameConfirmationModal = (event) => {
     setGameForPlayedGameRatingModal(game);
-    setIsDeletePlayedGameConfirmationModalOpen(true);
+    dispatch(setDeletePlayedGameConfirmationModalOpen(true));
     event.stopPropagation();
   };
 

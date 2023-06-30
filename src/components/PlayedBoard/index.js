@@ -15,7 +15,6 @@ function PlayedBoard({
     setPlayedGames,
     setIsPlayedGameRatingModalOpen,
     setGameForPlayedGameRatingModal,
-    setIsDeletePlayedGameConfirmationModalOpen
 }) {
     const playedSearchValue = useSelector(state => state.playedSearchValue.value);
     const dispatch = useDispatch();
@@ -42,7 +41,6 @@ function PlayedBoard({
                                 setPlayedGames={setPlayedGames}
                                 setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
                                 setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
-                                setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
                             />);})
                     : Object.values(playedGames).map((game) => {
                         return (
@@ -56,7 +54,6 @@ function PlayedBoard({
                                 setPlayedGames={setPlayedGames}
                                 setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
                                 setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
-                                setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
                             />);})}
                 </GamesList>
             </>}

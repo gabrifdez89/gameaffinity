@@ -30,7 +30,7 @@ function App() {
   const [playedGameRating, setPlayedGameRating] = useState(0);
   const [playedGameReview, setPlayedGameReview] = useState('');
   const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
-  const [isDeletePlayedGameConfirmationModalOpen, setIsDeletePlayedGameConfirmationModalOpen] = useState(false);
+  //const [isDeletePlayedGameConfirmationModalOpen, setIsDeletePlayedGameConfirmationModalOpen] = useState(false);
   const topbar = useSelector(state => state.topbar.value);
   const searchValue = useSelector(state => state.searchValue.value);
 
@@ -80,7 +80,6 @@ function App() {
           setPlayedGames={setPlayedGames}
           setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
-          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />}
         {topbar === 'want-to-play' &&
         <WantToPlayBoard
@@ -91,7 +90,6 @@ function App() {
           setPlayedGames={setPlayedGames}
           setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
-          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />
         }
         {topbar === 'played' &&
@@ -103,7 +101,6 @@ function App() {
           setPlayedGames={setPlayedGames}
           setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
-          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />
         }
         <GameDetailsModal
@@ -119,7 +116,6 @@ function App() {
           setPlayedGames={setPlayedGames}
           setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
-          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />
         <PlayedGameRatingModal
           isPlayedGameRatingModalOpen={isPlayedGameRatingModalOpen}
@@ -137,8 +133,6 @@ function App() {
           gameForPlayedGameRatingModal={gameForPlayedGameRatingModal}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          isDeletePlayedGameConfirmationModalOpen={isDeletePlayedGameConfirmationModalOpen}
-          setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
         />
       </MainContainer>
     </div>
