@@ -8,10 +8,9 @@ import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deleteP
 import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
+import { setWantToPlayGames } from '../../features/wantToPlayGames/wantToPlayGamesSlice';
 
 function GameDetailsModal({
-    wantToPlayGames,
-    setWantToPlayGames,
     playedGames }) {
 
         const isModalOpen = useSelector(state => state.modalOpen.value);
@@ -19,20 +18,21 @@ function GameDetailsModal({
         const gameDetailsScreenshots = useSelector(state => state.gameDetailsScreenshots.value);
         const latestGamesReleased = useSelector(state => state.latestGamesReleased.value);
         const searchedGames = useSelector(state => state.searchedGames.value);
+        const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
         const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {
             let copy = JSON.parse(JSON.stringify(wantToPlayGames));
             let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
             copy[gameDetails.slug] = game;
-            setWantToPlayGames(copy);
+            dispatch(setWantToPlayGames(copy));
             localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
         
         const removeGameFromWantToPlay = () => {
             let copy = JSON.parse(JSON.stringify(wantToPlayGames));
             delete copy[gameDetails.slug];
-            setWantToPlayGames(copy);
+            dispatch(setWantToPlayGames(copy));
             localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
 

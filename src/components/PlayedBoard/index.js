@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlayedSearchValue } from '../../features/search/playedSearchSlice';
 
 function PlayedBoard({
-    wantToPlayGames,
-    setWantToPlayGames,
     openGameDetails,
     playedGames,
     setPlayedGames,
@@ -33,8 +31,6 @@ function PlayedBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                wantToPlayGames={wantToPlayGames}
-                                setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
                             />);})
@@ -44,8 +40,6 @@ function PlayedBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                wantToPlayGames={wantToPlayGames}
-                                setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
                             />);})}

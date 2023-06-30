@@ -2,24 +2,24 @@ import React from 'react';
 import { PlusCircleOutlined, MinusCircleOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import './index.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
 import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
+import { setWantToPlayGames } from '../../features/wantToPlayGames/wantToPlayGamesSlice';
 
 function GameCard({
   game,
   openGameDetails,
-  wantToPlayGames,
-  setWantToPlayGames,
   playedGames }) {
 
   const dispatch = useDispatch();
+  const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
 
   const addGameToWantToPlay = (event) => {
     let copy = JSON.parse(JSON.stringify(wantToPlayGames));
     copy[game.slug] = game;
-    setWantToPlayGames(copy);
+    dispatch(setWantToPlayGames(copy));
     localStorage.setItem('want_to_play_games', JSON.stringify(copy));
     event.stopPropagation();
   };
@@ -27,7 +27,7 @@ function GameCard({
   const removeGameFromWantToPlay = (event) => {
     let copy = JSON.parse(JSON.stringify(wantToPlayGames));
     delete copy[game.slug];
-    setWantToPlayGames(copy);
+    dispatch(setWantToPlayGames(copy));
     localStorage.setItem('want_to_play_games', JSON.stringify(copy));
     event.stopPropagation();
   };

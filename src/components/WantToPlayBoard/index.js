@@ -8,13 +8,12 @@ import { setWantToPlaySearchValue } from '../../features/search/wantToPlaySearch
 import { SearchBar } from '../SearchBar';
 
 function WantToPlayBoard({
-    wantToPlayGames,
-    setWantToPlayGames,
     openGameDetails,
     playedGames,
     setPlayedGames,
 }) {
     const wantToPlaySearchValue = useSelector(state => state.wantToPlaySearchValue.value);
+    const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
     const dispatch = useDispatch();
 
     return (
@@ -33,8 +32,6 @@ function WantToPlayBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                wantToPlayGames={wantToPlayGames}
-                                setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
                             />);})
@@ -44,8 +41,6 @@ function WantToPlayBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                wantToPlayGames={wantToPlayGames}
-                                setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
                             />);})}

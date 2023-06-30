@@ -8,8 +8,6 @@ import { setSearchValue } from '../../features/search/searchSlice';
 
 function SearchBoard({
     openGameDetails,
-    wantToPlayGames,
-    setWantToPlayGames,
     playedGames,
     setPlayedGames,
 }) {
@@ -32,8 +30,6 @@ function SearchBoard({
                         game={game}
                         key={game.id}
                         openGameDetails={openGameDetails}
-                        wantToPlayGames={wantToPlayGames}
-                        setWantToPlayGames={setWantToPlayGames}
                         playedGames={playedGames}
                         setPlayedGames={setPlayedGames}
                     />
@@ -45,8 +41,6 @@ function SearchBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                wantToPlayGames={wantToPlayGames}
-                                setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
                             />

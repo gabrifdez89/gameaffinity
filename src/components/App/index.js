@@ -22,9 +22,9 @@ import { setGameDetails } from '../../features/gameDetails/gameDetailsSlice';
 import { setGameDetailsScreenshots } from '../../features/gameDetailsScreenshots/gameDetailsScreenshotsSlice';
 import { setLatestGamesReleased } from '../../features/latestGamesReleased/latestGamesReleasedSlice';
 import { setSearchedGames } from '../../features/searchedGames/searchedGamesSlice';
+import { setWantToPlayGames } from '../../features/wantToPlayGames/wantToPlayGamesSlice';
 
 function App() {
-  const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
 
   const topbar = useSelector(state => state.topbar.value);
@@ -50,7 +50,7 @@ function App() {
     gameSlug: gameDetailsSlug
   });
   useFetchWantToPlayGames({
-    setWantToPlayGames: setWantToPlayGames,
+    setWantToPlayGames: (wantToPlayGames) => { dispatch(setWantToPlayGames(wantToPlayGames)) },
     playedGames: playedGames
   });
   useFetchPlayedGames({
@@ -70,15 +70,11 @@ function App() {
         {topbar === 'search' && 
         <SearchBoard
           openGameDetails={openGameDetails}
-          wantToPlayGames={wantToPlayGames}
-          setWantToPlayGames={setWantToPlayGames}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />}
         {topbar === 'want-to-play' &&
         <WantToPlayBoard
-          wantToPlayGames={wantToPlayGames}
-          setWantToPlayGames={setWantToPlayGames}
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
@@ -86,16 +82,12 @@ function App() {
         }
         {topbar === 'played' &&
         <PlayedBoard
-          wantToPlayGames={wantToPlayGames}
-          setWantToPlayGames={setWantToPlayGames}
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />
         }
         <GameDetailsModal
-          wantToPlayGames={wantToPlayGames}
-          setWantToPlayGames={setWantToPlayGames}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />
