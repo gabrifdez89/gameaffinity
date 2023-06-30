@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const playedGameRatinSlice = createSlice({
+export const playedGameRatingSlice = createSlice({
     name: 'playedGameRating',
     initialState: {
         value: 0
@@ -12,6 +12,6 @@ export const playedGameRatinSlice = createSlice({
     }
 });
 
-export const { setPlayedGameRating } = playedGameRatinSlice.actions;
+export const { setPlayedGameRating } = playedGameRatingSlice.actions;
 
-export default playedGameRatinSlice.reducer;
+export default playedGameRatingSlice.reducer;

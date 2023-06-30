@@ -4,16 +4,16 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 import { setPlayedGameRating } from '../../features/playedGameRating/playedGameRatingSlice';
+import { setPlayedGameReview } from '../../features/playedGameReview/playedGameReviewSlice';
 
 function PlayedGameRatingModal({
-    playedGameReview,
-    setPlayedGameReview,
     gameForPlayedGameRatingModal,
     setGameForPlayedGameRatingModal,
     playedGames,
     setPlayedGames
 }) {
     const playedGameRating = useSelector(state => state.playedGameRating.value);
+    const playedGameReview = useSelector(state => state.playedGameReview.value);
     const isPlayedGameRatingModalOpen = useSelector(state => state.playedGameRatingModalOpen.value);
     const dispatch = useDispatch();
     const formatter = (value) => `${value}%`;
@@ -22,12 +22,12 @@ function PlayedGameRatingModal({
         dispatch(setPlayedGameRating(value));
     };
     const setReview = (event) => {
-        setPlayedGameReview(event.target.value);
+        dispatch(setPlayedGameReview(event.target.value));
     };
     const cancel = () => {
         dispatch(setPlayedGameRatingModalOpen(false));
         dispatch(setPlayedGameRating(0));
-        setPlayedGameReview('');
+        dispatch(setPlayedGameReview(''))
         setGameForPlayedGameRatingModal({});
     };
     const ok = () => {
@@ -39,7 +39,7 @@ function PlayedGameRatingModal({
         localStorage.setItem('played_games', JSON.stringify(copy));
         dispatch(setPlayedGameRatingModalOpen(false));
         dispatch(setPlayedGameRating(0));
-        setPlayedGameReview('');
+        dispatch(setPlayedGameReview(''))
     };
 
     return (
