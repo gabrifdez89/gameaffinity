@@ -26,11 +26,9 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
-  const [isPlayedGameRatingModalOpen, setIsPlayedGameRatingModalOpen] = useState(false);
   const [playedGameRating, setPlayedGameRating] = useState(0);
   const [playedGameReview, setPlayedGameReview] = useState('');
   const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
-  //const [isDeletePlayedGameConfirmationModalOpen, setIsDeletePlayedGameConfirmationModalOpen] = useState(false);
   const topbar = useSelector(state => state.topbar.value);
   const searchValue = useSelector(state => state.searchValue.value);
 
@@ -78,7 +76,6 @@ function App() {
           latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />}
         {topbar === 'want-to-play' &&
@@ -88,7 +85,6 @@ function App() {
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         }
@@ -99,7 +95,6 @@ function App() {
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         }
@@ -114,12 +109,9 @@ function App() {
           latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         <PlayedGameRatingModal
-          isPlayedGameRatingModalOpen={isPlayedGameRatingModalOpen}
-          setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
           playedGameRating={playedGameRating}
           setPlayedGameRating={setPlayedGameRating}
           playedGameReview={playedGameReview}

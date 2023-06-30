@@ -1,10 +1,10 @@
 import React from 'react';
 import { Modal, Slider, Input } from 'antd';
 import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 
 function PlayedGameRatingModal({
-    isPlayedGameRatingModalOpen,
-    setIsPlayedGameRatingModalOpen,
     playedGameRating,
     setPlayedGameRating,
     playedGameReview,
@@ -14,6 +14,8 @@ function PlayedGameRatingModal({
     playedGames,
     setPlayedGames
 }) {
+    const isPlayedGameRatingModalOpen = useSelector(state => state.playedGameRatingModalOpen.value);
+    const dispatch = useDispatch();
     const formatter = (value) => `${value}%`;
     const { TextArea } = Input;
     const setRating = (value) => {
@@ -23,7 +25,7 @@ function PlayedGameRatingModal({
         setPlayedGameReview(event.target.value);
     };
     const cancel = () => {
-        setIsPlayedGameRatingModalOpen(false);
+        dispatch(setPlayedGameRatingModalOpen(false));
         setPlayedGameRating(0);
         setPlayedGameReview('');
         setGameForPlayedGameRatingModal({});
@@ -35,7 +37,7 @@ function PlayedGameRatingModal({
         copy[gameForPlayedGameRatingModal.slug]['own_review'] = playedGameReview;
         setPlayedGames(copy);
         localStorage.setItem('played_games', JSON.stringify(copy));
-        setIsPlayedGameRatingModalOpen(false);
+        dispatch(setPlayedGameRatingModalOpen(false));
         setPlayedGameRating(0);
         setPlayedGameReview('');
     };

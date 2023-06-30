@@ -5,6 +5,7 @@ import { PlusCircleOutlined, MinusCircleOutlined, CheckCircleOutlined, CloseCirc
 import './index.css';
 import { useDispatch } from 'react-redux';
 import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
+import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 
 function GameDetailsModal({
     gameDetails,
@@ -16,7 +17,6 @@ function GameDetailsModal({
     searchedGames,
     latestGamesReleased,
     playedGames,
-    setIsPlayedGameRatingModalOpen,
     setGameForPlayedGameRatingModal }) {
 
         const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function GameDetailsModal({
         const openPlayedGameRatingModal = () => {
             let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
             setGameForPlayedGameRatingModal(game);
-            setIsPlayedGameRatingModalOpen(true);
+            dispatch(setPlayedGameRatingModalOpen(true));
         };
 
         const openDeletePlayedGameConfirmationModal = () => {

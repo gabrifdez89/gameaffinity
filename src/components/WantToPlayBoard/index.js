@@ -13,7 +13,6 @@ function WantToPlayBoard({
     openGameDetails,
     playedGames,
     setPlayedGames,
-    setIsPlayedGameRatingModalOpen,
     setGameForPlayedGameRatingModal,
 }) {
     const wantToPlaySearchValue = useSelector(state => state.wantToPlaySearchValue.value);
@@ -39,7 +38,6 @@ function WantToPlayBoard({
                                 setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
-                                setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
                                 setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
                             />);})
                     : Object.values(wantToPlayGames).map((game) => {
@@ -52,7 +50,6 @@ function WantToPlayBoard({
                                 setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
-                                setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
                                 setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
                             />);})}
                 </GamesList>

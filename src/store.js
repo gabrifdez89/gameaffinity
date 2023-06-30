@@ -4,6 +4,7 @@ import searchSliceReducer from './features/search/searchSlice';
 import wantToPlaySearchSliceReducer from './features/search/wantToPlaySearchSlice';
 import playedSearchSliceReducer from './features/search/playedSearchSlice';
 import deletePlayedGameConfirmationModalOpenReducer from './features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
+import playedGameRatingModalOpenReducer from './features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     searchValue: searchSliceReducer,
     wantToPlaySearchValue: wantToPlaySearchSliceReducer,
     playedSearchValue: playedSearchSliceReducer,
-    deletePlayedGameConfirmationModalOpen: deletePlayedGameConfirmationModalOpenReducer
+    deletePlayedGameConfirmationModalOpen: deletePlayedGameConfirmationModalOpenReducer,
+    playedGameRatingModalOpen: playedGameRatingModalOpenReducer,
   }
 });
 
