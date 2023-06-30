@@ -20,7 +20,6 @@ import { Topbar } from '../../features/topbar/Topbar';
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
   const [wantToPlaySearchValue, setWantToPlaySearchValue] = useState('');
   const [playedGamesSearchValue, setPlayedGamesSearchValue] = useState('');
   const [gameDetailsSlug, setGameDetailsSlug] = useState('');
@@ -35,13 +34,14 @@ function App() {
   const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
   const [isDeletePlayedGameConfirmationModalOpen, setIsDeletePlayedGameConfirmationModalOpen] = useState(false);
   const topbar = useSelector(state => state.topbar.value);
+  const searchValue = useSelector(state => state.searchBar.value);
 
   useFetchLatestGamesReleased({ 
     setLatestGamesReleased: setLatestGamesReleased,
     playedGames: playedGames });
-  useFetchSearchedGames({ 
-    setSearchedGames: setSearchedGames,
+  useFetchSearchedGames({
     searchValue: searchValue,
+    setSearchedGames: setSearchedGames,
     playedGames: playedGames
   });
   useFetchGameDetails({
@@ -73,8 +73,6 @@ function App() {
         <Topbar />
         {topbar === 'search' && 
         <SearchBoard
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
           searchedGames={searchedGames}
           openGameDetails={openGameDetails}
           wantToPlayGames={wantToPlayGames}
