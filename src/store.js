@@ -12,6 +12,7 @@ import gameDetailsSlugReducer from './features/gameDetailsSlug/gameDetailsSlugSl
 import gameForPlayedGameRatingModalReducer from './features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 import gameDetailsReducer from './features/gameDetails/gameDetailsSlice';
 import gameDetailsScreenshotsReducer from './features/gameDetailsScreenshots/gameDetailsScreenshotsSlice';
+import latestGamesReleasedReducer from './features/latestGamesReleased/latestGamesReleasedSlice';
 
 const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ const store = configureStore({
     gameForPlayedGameRatingModal: gameForPlayedGameRatingModalReducer,
     gameDetails: gameDetailsReducer,
     gameDetailsScreenshots: gameDetailsScreenshotsReducer,
+    latestGamesReleased: latestGamesReleasedReducer,
   }
 });
 

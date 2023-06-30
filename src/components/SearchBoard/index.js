@@ -11,11 +11,11 @@ function SearchBoard({
     openGameDetails,
     wantToPlayGames,
     setWantToPlayGames,
-    latestGamesReleased,
     playedGames,
     setPlayedGames,
 }) {
     const searchValue = useSelector(state => state.searchValue.value);
+    const latestGamesReleased = useSelector(state => state.latestGamesReleased.value);
     const dispatch = useDispatch();
 
     return (

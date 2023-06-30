@@ -20,9 +20,9 @@ import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 import { setGameDetailsSlug } from '../../features/gameDetailsSlug/gameDetailsSlugSlice';
 import { setGameDetails } from '../../features/gameDetails/gameDetailsSlice';
 import { setGameDetailsScreenshots } from '../../features/gameDetailsScreenshots/gameDetailsScreenshotsSlice';
+import { setLatestGamesReleased } from '../../features/latestGamesReleased/latestGamesReleasedSlice';
 
 function App() {
-  const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
@@ -33,7 +33,7 @@ function App() {
   const dispatch = useDispatch();
 
   useFetchLatestGamesReleased({ 
-    setLatestGamesReleased: setLatestGamesReleased,
+    setLatestGamesReleased: (latestGamesReleased) => { dispatch(setLatestGamesReleased(latestGamesReleased)) },
     playedGames: playedGames });
   useFetchSearchedGames({
     searchValue: searchValue,
@@ -73,7 +73,6 @@ function App() {
           openGameDetails={openGameDetails}
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
-          latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />}
@@ -99,7 +98,6 @@ function App() {
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
           searchedGames={searchedGames}
-          latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />

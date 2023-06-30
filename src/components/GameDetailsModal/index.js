@@ -13,12 +13,12 @@ function GameDetailsModal({
     wantToPlayGames,
     setWantToPlayGames,
     searchedGames,
-    latestGamesReleased,
     playedGames }) {
 
         const isModalOpen = useSelector(state => state.modalOpen.value);
         const gameDetails = useSelector(state => state.gameDetails.value);
         const gameDetailsScreenshots = useSelector(state => state.gameDetailsScreenshots.value);
+        const latestGamesReleased = useSelector(state => state.latestGamesReleased.value);
         const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {
