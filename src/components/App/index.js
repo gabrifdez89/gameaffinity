@@ -15,7 +15,7 @@ import { PlayedGameRatingModal } from '../PlayedGameRatingModal';
 import { DeletePlayedGameConfirmationModal } from '../DeletePlayedGameConfirmationModal';
 import './index.css';
 import { useSelector } from 'react-redux';
-import { Topbar } from '../../features/topbar/Topbar';
+import { Topbar } from '../Topbar';
 
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);

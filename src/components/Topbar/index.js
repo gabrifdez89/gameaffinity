@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setTopbar } from './topbarSlice';
 import { Menu } from 'antd';
 import { SearchOutlined, PlusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { setTopbar } from '../../features/topbar/topbarSlice';
 import './index.css';
 
 function Topbar() {
