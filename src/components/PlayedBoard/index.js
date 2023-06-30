@@ -4,10 +4,10 @@ import { GamesList } from '../GamesList';
 import { GameCard } from '../GameCard';
 import { EmptyPlayedGames } from '../EmptyPlayedGames';
 import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPlayedSearchValue } from '../../features/search/playedSearchSlice';
 
 function PlayedBoard({
-    playedGamesSearchValue,
-    setPlayedGamesSearchValue,
     wantToPlayGames,
     setWantToPlayGames,
     openGameDetails,
@@ -17,17 +17,20 @@ function PlayedBoard({
     setGameForPlayedGameRatingModal,
     setIsDeletePlayedGameConfirmationModalOpen
 }) {
+    const playedSearchValue = useSelector(state => state.playedSearchValue.value);
+    const dispatch = useDispatch();
+
     return (
         <>   
             {Object.keys(playedGames).length > 0 &&
             <>
                 <SearchBar
-                    searchValue={playedGamesSearchValue}
-                    setSearchValue={setPlayedGamesSearchValue}
+                    searchValue={playedSearchValue}
+                    setSearchValue={(e) => dispatch(setPlayedSearchValue(e.target.value))}
                 />
                 <GamesList>
-                    {playedGamesSearchValue.length > 0
-                    ? Object.values(playedGames).filter(g => g.name.toLowerCase().includes(playedGamesSearchValue.toLowerCase())).map((game) => {
+                    {playedSearchValue.length > 0
+                    ? Object.values(playedGames).filter(g => g.name.toLowerCase().includes(playedSearchValue.toLowerCase())).map((game) => {
                         return (
                             <GameCard 
                                 game={game}
