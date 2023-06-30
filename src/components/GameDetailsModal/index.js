@@ -10,7 +10,6 @@ import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 
 function GameDetailsModal({
-    gameDetails,
     gameDetailsScreenshots,
     wantToPlayGames,
     setWantToPlayGames,
@@ -19,6 +18,7 @@ function GameDetailsModal({
     playedGames }) {
 
         const isModalOpen = useSelector(state => state.modalOpen.value);
+        const gameDetails = useSelector(state => state.gameDetails.value);
         const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {
@@ -62,7 +62,7 @@ function GameDetailsModal({
                         <div className="GameDetailsModalHeader">
                             {gameDetails.metacritic &&
                             <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>}
-                            {gameDetails.own_rating &&
+                            {gameDetails.own_rating !== undefined &&
                             <p className="GameDetailsModalOwnRating"><span>My rating: </span>{gameDetails.own_rating}%</p>}
                             {gameDetails.own_review &&
                             <p className="GameDetailsModalOwnReview"><span>My review: </span>"{gameDetails.own_review}"</p>}

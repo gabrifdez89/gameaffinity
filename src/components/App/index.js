@@ -18,14 +18,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Topbar } from '../Topbar';
 import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 import { setGameDetailsSlug } from '../../features/gameDetailsSlug/gameDetailsSlugSlice';
+import { setGameDetails } from '../../features/gameDetails/gameDetailsSlice';
 
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
-  const [gameDetails, setGameDetails] = useState();//3
   const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
+
   const topbar = useSelector(state => state.topbar.value);
   const searchValue = useSelector(state => state.searchValue.value);
   const gameDetailsSlug = useSelector(state => state.gameDetailsSlug.value);
@@ -40,7 +41,7 @@ function App() {
     playedGames: playedGames
   });
   useFetchGameDetails({
-    setGameDetails: setGameDetails,
+    setGameDetails: (gameDetails) => { dispatch(setGameDetails(gameDetails)) },
     gameSlug: gameDetailsSlug,
     playedGames: playedGames
   });
@@ -95,7 +96,6 @@ function App() {
         />
         }
         <GameDetailsModal
-          gameDetails={gameDetails}
           gameDetailsScreenshots={gameDetailsScreenshots}
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
