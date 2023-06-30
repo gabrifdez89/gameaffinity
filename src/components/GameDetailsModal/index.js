@@ -10,7 +10,6 @@ import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 
 function GameDetailsModal({
-    gameDetailsScreenshots,
     wantToPlayGames,
     setWantToPlayGames,
     searchedGames,
@@ -19,6 +18,7 @@ function GameDetailsModal({
 
         const isModalOpen = useSelector(state => state.modalOpen.value);
         const gameDetails = useSelector(state => state.gameDetails.value);
+        const gameDetailsScreenshots = useSelector(state => state.gameDetailsScreenshots.value);
         const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {

@@ -11,6 +11,7 @@ import modalOpenReducer from './features/modalOpen/modalOpenSlice';
 import gameDetailsSlugReducer from './features/gameDetailsSlug/gameDetailsSlugSlice';
 import gameForPlayedGameRatingModalReducer from './features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 import gameDetailsReducer from './features/gameDetails/gameDetailsSlice';
+import gameDetailsScreenshotsReducer from './features/gameDetailsScreenshots/gameDetailsScreenshotsSlice';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ const store = configureStore({
     gameDetailsSlug: gameDetailsSlugReducer,
     gameForPlayedGameRatingModal: gameForPlayedGameRatingModalReducer,
     gameDetails: gameDetailsReducer,
+    gameDetailsScreenshots: gameDetailsScreenshotsReducer,
   }
 });
 

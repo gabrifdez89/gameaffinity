@@ -19,11 +19,11 @@ import { Topbar } from '../Topbar';
 import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 import { setGameDetailsSlug } from '../../features/gameDetailsSlug/gameDetailsSlugSlice';
 import { setGameDetails } from '../../features/gameDetails/gameDetailsSlice';
+import { setGameDetailsScreenshots } from '../../features/gameDetailsScreenshots/gameDetailsScreenshotsSlice';
 
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
-  const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
 
@@ -46,7 +46,7 @@ function App() {
     playedGames: playedGames
   });
   useFetchGameDetailsScreenshots({
-    setGameDetailsScreenshots: setGameDetailsScreenshots,
+    setGameDetailsScreenshots: (gameDetailsScreenshots) => { dispatch(setGameDetailsScreenshots(gameDetailsScreenshots)) },
     gameSlug: gameDetailsSlug
   });
   useFetchWantToPlayGames({
@@ -96,7 +96,6 @@ function App() {
         />
         }
         <GameDetailsModal
-          gameDetailsScreenshots={gameDetailsScreenshots}
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
           searchedGames={searchedGames}
