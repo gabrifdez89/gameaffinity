@@ -7,6 +7,7 @@ import deletePlayedGameConfirmationModalOpenReducer from './features/deletePlaye
 import playedGameRatingModalOpenReducer from './features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 import playedGameRatingReducer from './features/playedGameRating/playedGameRatingSlice';
 import playedGameReviewReducer from './features/playedGameReview/playedGameReviewSlice';
+import modalOpenReducer from './features/modalOpen/modalOpenSlice';
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     playedGameRatingModalOpen: playedGameRatingModalOpenReducer,
     playedGameRating: playedGameRatingReducer,
     playedGameReview: playedGameReviewReducer,
+    modalOpen: modalOpenReducer,
   }
 });
 

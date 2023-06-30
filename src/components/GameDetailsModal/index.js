@@ -3,14 +3,13 @@ import { Modal, Carousel } from 'antd';
 import { PlusCircleOutlined, MinusCircleOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import './index.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
 import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
+import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 
 function GameDetailsModal({
     gameDetails,
-    isModalOpen,
-    setIsModalOpen,
     gameDetailsScreenshots,
     wantToPlayGames,
     setWantToPlayGames,
@@ -19,6 +18,7 @@ function GameDetailsModal({
     playedGames,
     setGameForPlayedGameRatingModal }) {
 
+        const isModalOpen = useSelector(state => state.modalOpen.value);
         const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {
@@ -55,7 +55,7 @@ function GameDetailsModal({
                     className="GameDetailsModal"
                     title={gameDetails.name}
                     open={isModalOpen}
-                    onCancel={() => { setIsModalOpen(false) }}
+                    onCancel={() => { dispatch(setModalOpen(false)) }}
                     footer={null}
                     width={700}
                     centered={true}>

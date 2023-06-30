@@ -14,21 +14,22 @@ import { PlayedBoard } from '../PlayedBoard';
 import { PlayedGameRatingModal } from '../PlayedGameRatingModal';
 import { DeletePlayedGameConfirmationModal } from '../DeletePlayedGameConfirmationModal';
 import './index.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Topbar } from '../Topbar';
+import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
   const [gameDetailsSlug, setGameDetailsSlug] = useState('');
-  const [gameDetails, setGameDetails] = useState();
+  const [gameDetails, setGameDetails] = useState();//3
   const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
-  const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
+  const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});//2
   const topbar = useSelector(state => state.topbar.value);
   const searchValue = useSelector(state => state.searchValue.value);
+  const dispatch = useDispatch();
 
   useFetchLatestGamesReleased({ 
     setLatestGamesReleased: setLatestGamesReleased,
@@ -55,9 +56,9 @@ function App() {
     setPlayedGames: setPlayedGames
   });
 
-  const openGameDetails = function(gameSlug) {
+  const openGameDetails = function(gameSlug) {//worth thinking if we could move this into the components
     setGameDetailsSlug(gameSlug);
-    setIsModalOpen(true);
+    dispatch(setModalOpen(true));
   };
 
   return (
@@ -98,8 +99,6 @@ function App() {
         }
         <GameDetailsModal
           gameDetails={gameDetails}
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
           gameDetailsScreenshots={gameDetailsScreenshots}
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
