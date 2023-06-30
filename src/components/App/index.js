@@ -20,7 +20,6 @@ import { Topbar } from '../../features/topbar/Topbar';
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
-  const [wantToPlaySearchValue, setWantToPlaySearchValue] = useState('');
   const [playedGamesSearchValue, setPlayedGamesSearchValue] = useState('');
   const [gameDetailsSlug, setGameDetailsSlug] = useState('');
   const [gameDetails, setGameDetails] = useState();
@@ -86,8 +85,6 @@ function App() {
         />}
         {topbar === 'want-to-play' &&
         <WantToPlayBoard
-          wantToPlaySearchValue={wantToPlaySearchValue}
-          setWantToPlaySearchValue={setWantToPlaySearchValue}
           wantToPlayGames={wantToPlayGames}
           setWantToPlayGames={setWantToPlayGames}
           openGameDetails={openGameDetails}

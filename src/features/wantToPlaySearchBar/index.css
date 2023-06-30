@@ -1,0 +1,21 @@
+.TopBar {
+    max-width: 375px;
+    margin: 0 auto;
+}
+
+.TopBar ul {
+    background-color: var(--main-container-background-color);
+    color: var(--secondary-color);
+}
+
+.TopBar ul li {
+    font-family: -apple-system, BlinkMacSystemFont, 'Orbit', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    serif;
+}
+
+.TopBar ul>li.ant-menu-overflow-item.ant-menu-item.ant-menu-item-active.ant-menu-item-selected {
+    color: var(--main-color);
+    border-bottom-width: 2px;
+    border-bottom-color: var(--main-color);
+}
