@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
 import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
+import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 
 function GameDetailsModal({
     gameDetails,
@@ -15,8 +16,7 @@ function GameDetailsModal({
     setWantToPlayGames,
     searchedGames,
     latestGamesReleased,
-    playedGames,
-    setGameForPlayedGameRatingModal }) {
+    playedGames }) {
 
         const isModalOpen = useSelector(state => state.modalOpen.value);
         const dispatch = useDispatch();
@@ -38,13 +38,13 @@ function GameDetailsModal({
 
         const openPlayedGameRatingModal = () => {
             let game = searchedGames.concat(latestGamesReleased).concat(Object.values(wantToPlayGames)).find(g => g.slug === gameDetails.slug);
-            setGameForPlayedGameRatingModal(game);
+            dispatch(setGameForPlayedGameRatingModal(game));
             dispatch(setPlayedGameRatingModalOpen(true));
         };
 
         const openDeletePlayedGameConfirmationModal = () => {
             let game = Object.values(playedGames).find(g => g.slug === gameDetails.slug);
-            setGameForPlayedGameRatingModal(game);
+            dispatch(setGameForPlayedGameRatingModal(game));
             dispatch(setDeletePlayedGameConfirmationModalOpen(true));
         };
     

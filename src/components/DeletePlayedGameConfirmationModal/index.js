@@ -4,13 +4,14 @@ import { Modal } from 'antd';
 import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
+import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 
 function DeletePlayedGameConfirmationModal({
-    gameForPlayedGameRatingModal,
     playedGames,
     setPlayedGames,
 }) {
     const isDeletePlayedGameConfirmationModalOpen = useSelector(state => state.deletePlayedGameConfirmationModalOpen.value);
+    const gameForPlayedGameRatingModal = useSelector(state => state.gameForPlayedGameRatingModal.value);
     const dispatch = useDispatch();
 
     const ok = () => {
@@ -18,11 +19,13 @@ function DeletePlayedGameConfirmationModal({
         delete copy[gameForPlayedGameRatingModal.slug];
         setPlayedGames(copy);
         localStorage.setItem('played_games', JSON.stringify(copy));
-        dispatch(setDeletePlayedGameConfirmationModalOpen(false))
+        dispatch(setDeletePlayedGameConfirmationModalOpen(false));
+        dispatch(setGameForPlayedGameRatingModal({}));
     }
 
     const cancel = () => {
         dispatch(setDeletePlayedGameConfirmationModalOpen(false))
+        dispatch(setGameForPlayedGameRatingModal({}));
     }
 
     return (

@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
 import { setPlayedGameRating } from '../../features/playedGameRating/playedGameRatingSlice';
 import { setPlayedGameReview } from '../../features/playedGameReview/playedGameReviewSlice';
+import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 
 function PlayedGameRatingModal({
-    gameForPlayedGameRatingModal,
-    setGameForPlayedGameRatingModal,
     playedGames,
     setPlayedGames
 }) {
     const playedGameRating = useSelector(state => state.playedGameRating.value);
     const playedGameReview = useSelector(state => state.playedGameReview.value);
+    const gameForPlayedGameRatingModal = useSelector(state => state.gameForPlayedGameRatingModal.value);
     const isPlayedGameRatingModalOpen = useSelector(state => state.playedGameRatingModalOpen.value);
     const dispatch = useDispatch();
     const formatter = (value) => `${value}%`;
@@ -28,11 +28,11 @@ function PlayedGameRatingModal({
         dispatch(setPlayedGameRatingModalOpen(false));
         dispatch(setPlayedGameRating(0));
         dispatch(setPlayedGameReview(''))
-        setGameForPlayedGameRatingModal({});
+        dispatch(setGameForPlayedGameRatingModal({}));
     };
     const ok = () => {
         let copy = JSON.parse(JSON.stringify(playedGames));
-        copy[gameForPlayedGameRatingModal.slug] = gameForPlayedGameRatingModal;
+        copy[gameForPlayedGameRatingModal.slug] = JSON.parse(JSON.stringify(gameForPlayedGameRatingModal));
         copy[gameForPlayedGameRatingModal.slug]['own_rating'] = playedGameRating;
         copy[gameForPlayedGameRatingModal.slug]['own_review'] = playedGameReview;
         setPlayedGames(copy);

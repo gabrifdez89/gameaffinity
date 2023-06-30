@@ -9,6 +9,7 @@ import playedGameRatingReducer from './features/playedGameRating/playedGameRatin
 import playedGameReviewReducer from './features/playedGameReview/playedGameReviewSlice';
 import modalOpenReducer from './features/modalOpen/modalOpenSlice';
 import gameDetailsSlugReducer from './features/gameDetailsSlug/gameDetailsSlugSlice';
+import gameForPlayedGameRatingModalReducer from './features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     playedGameReview: playedGameReviewReducer,
     modalOpen: modalOpenReducer,
     gameDetailsSlug: gameDetailsSlugReducer,
+    gameForPlayedGameRatingModal: gameForPlayedGameRatingModalReducer,
   }
 });
 

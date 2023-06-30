@@ -26,7 +26,6 @@ function App() {
   const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
-  const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});//2
   const topbar = useSelector(state => state.topbar.value);
   const searchValue = useSelector(state => state.searchValue.value);
   const gameDetailsSlug = useSelector(state => state.gameDetailsSlug.value);
@@ -76,7 +75,6 @@ function App() {
           latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />}
         {topbar === 'want-to-play' &&
         <WantToPlayBoard
@@ -85,7 +83,6 @@ function App() {
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         }
         {topbar === 'played' &&
@@ -95,7 +92,6 @@ function App() {
           openGameDetails={openGameDetails}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         }
         <GameDetailsModal
@@ -107,16 +103,12 @@ function App() {
           latestGamesReleased={latestGamesReleased}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
-          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         <PlayedGameRatingModal
-          gameForPlayedGameRatingModal={gameForPlayedGameRatingModal}
-          setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />
         <DeletePlayedGameConfirmationModal
-          gameForPlayedGameRatingModal={gameForPlayedGameRatingModal}
           playedGames={playedGames}
           setPlayedGames={setPlayedGames}
         />

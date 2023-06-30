@@ -5,14 +5,14 @@ import './index.css';
 import { useDispatch } from 'react-redux';
 import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
 import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
+import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 
 function GameCard({
   game,
   openGameDetails,
   wantToPlayGames,
   setWantToPlayGames,
-  playedGames,
-  setGameForPlayedGameRatingModal }) {
+  playedGames }) {
 
   const dispatch = useDispatch();
 
@@ -33,13 +33,13 @@ function GameCard({
   };
 
   const openDeletePlayedGameConfirmationModal = (event) => {
-    setGameForPlayedGameRatingModal(game);
+    dispatch(setGameForPlayedGameRatingModal(game));
     dispatch(setDeletePlayedGameConfirmationModalOpen(true));
     event.stopPropagation();
   };
 
   const openPlayedGameRatingModal = (event) => {
-    setGameForPlayedGameRatingModal(game);
+    dispatch(setGameForPlayedGameRatingModal(game));
     dispatch(setPlayedGameRatingModalOpen(true));
     event.stopPropagation();
   };

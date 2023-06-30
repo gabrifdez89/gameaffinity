@@ -13,7 +13,6 @@ function PlayedBoard({
     openGameDetails,
     playedGames,
     setPlayedGames,
-    setGameForPlayedGameRatingModal,
 }) {
     const playedSearchValue = useSelector(state => state.playedSearchValue.value);
     const dispatch = useDispatch();
@@ -38,7 +37,6 @@ function PlayedBoard({
                                 setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
-                                setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
                             />);})
                     : Object.values(playedGames).map((game) => {
                         return (
@@ -50,7 +48,6 @@ function PlayedBoard({
                                 setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
-                                setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
                             />);})}
                 </GamesList>
             </>}

@@ -14,7 +14,6 @@ function SearchBoard({
     latestGamesReleased,
     playedGames,
     setPlayedGames,
-    setGameForPlayedGameRatingModal,
 }) {
     const searchValue = useSelector(state => state.searchValue.value);
     const dispatch = useDispatch();
@@ -37,7 +36,6 @@ function SearchBoard({
                         setWantToPlayGames={setWantToPlayGames}
                         playedGames={playedGames}
                         setPlayedGames={setPlayedGames}
-                        setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
                     />
                     );
                     })
@@ -51,7 +49,6 @@ function SearchBoard({
                                 setWantToPlayGames={setWantToPlayGames}
                                 playedGames={playedGames}
                                 setPlayedGames={setPlayedGames}
-                                setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
                             />
                             );
                         })}
