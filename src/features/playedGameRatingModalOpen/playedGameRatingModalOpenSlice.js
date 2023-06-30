@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const playedGameRatingModalOpenSlice = createSlice({
-    name: 'playedGameRatingModalOpenSlice',
+    name: 'playedGameRatingModalOpen',
     initialState: {
         value: false
     },

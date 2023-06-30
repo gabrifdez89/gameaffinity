@@ -26,7 +26,6 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
   const [playedGames, setPlayedGames] = useState({});
-  const [playedGameRating, setPlayedGameRating] = useState(0);
   const [playedGameReview, setPlayedGameReview] = useState('');
   const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
   const topbar = useSelector(state => state.topbar.value);
@@ -112,8 +111,6 @@ function App() {
           setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
         />
         <PlayedGameRatingModal
-          playedGameRating={playedGameRating}
-          setPlayedGameRating={setPlayedGameRating}
           playedGameReview={playedGameReview}
           setPlayedGameReview={setPlayedGameReview}
           gameForPlayedGameRatingModal={gameForPlayedGameRatingModal}

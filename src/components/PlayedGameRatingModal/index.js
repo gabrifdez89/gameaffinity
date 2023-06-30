@@ -3,10 +3,9 @@ import { Modal, Slider, Input } from 'antd';
 import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
+import { setPlayedGameRating } from '../../features/playedGameRating/playedGameRatingSlice';
 
 function PlayedGameRatingModal({
-    playedGameRating,
-    setPlayedGameRating,
     playedGameReview,
     setPlayedGameReview,
     gameForPlayedGameRatingModal,
@@ -14,19 +13,20 @@ function PlayedGameRatingModal({
     playedGames,
     setPlayedGames
 }) {
+    const playedGameRating = useSelector(state => state.playedGameRating.value);
     const isPlayedGameRatingModalOpen = useSelector(state => state.playedGameRatingModalOpen.value);
     const dispatch = useDispatch();
     const formatter = (value) => `${value}%`;
     const { TextArea } = Input;
     const setRating = (value) => {
-        setPlayedGameRating(value);
+        dispatch(setPlayedGameRating(value));
     };
     const setReview = (event) => {
         setPlayedGameReview(event.target.value);
     };
     const cancel = () => {
         dispatch(setPlayedGameRatingModalOpen(false));
-        setPlayedGameRating(0);
+        dispatch(setPlayedGameRating(0));
         setPlayedGameReview('');
         setGameForPlayedGameRatingModal({});
     };
@@ -38,7 +38,7 @@ function PlayedGameRatingModal({
         setPlayedGames(copy);
         localStorage.setItem('played_games', JSON.stringify(copy));
         dispatch(setPlayedGameRatingModalOpen(false));
-        setPlayedGameRating(0);
+        dispatch(setPlayedGameRating(0));
         setPlayedGameReview('');
     };
 

@@ -37,13 +37,13 @@ function GameDetailsModal({
         };
 
         const openPlayedGameRatingModal = () => {
-            let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
+            let game = searchedGames.concat(latestGamesReleased).concat(Object.values(wantToPlayGames)).find(g => g.slug === gameDetails.slug);
             setGameForPlayedGameRatingModal(game);
             dispatch(setPlayedGameRatingModalOpen(true));
         };
 
         const openDeletePlayedGameConfirmationModal = () => {
-            let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
+            let game = Object.values(playedGames).find(g => g.slug === gameDetails.slug);
             setGameForPlayedGameRatingModal(game);
             dispatch(setDeletePlayedGameConfirmationModalOpen(true));
         };
