@@ -17,11 +17,11 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Topbar } from '../Topbar';
 import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
+import { setGameDetailsSlug } from '../../features/gameDetailsSlug/gameDetailsSlugSlice';
 
 function App() {
   const [latestGamesReleased, setLatestGamesReleased] = useState([]);
   const [searchedGames, setSearchedGames] = useState([]);
-  const [gameDetailsSlug, setGameDetailsSlug] = useState('');
   const [gameDetails, setGameDetails] = useState();//3
   const [gameDetailsScreenshots, setGameDetailsScreenshots] = useState([]);
   const [wantToPlayGames, setWantToPlayGames] = useState({});
@@ -29,6 +29,7 @@ function App() {
   const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});//2
   const topbar = useSelector(state => state.topbar.value);
   const searchValue = useSelector(state => state.searchValue.value);
+  const gameDetailsSlug = useSelector(state => state.gameDetailsSlug.value);
   const dispatch = useDispatch();
 
   useFetchLatestGamesReleased({ 
@@ -57,7 +58,7 @@ function App() {
   });
 
   const openGameDetails = function(gameSlug) {//worth thinking if we could move this into the components
-    setGameDetailsSlug(gameSlug);
+    dispatch(setGameDetailsSlug(gameSlug));
     dispatch(setModalOpen(true));
   };
 
