@@ -2,17 +2,16 @@ import React from 'react';
 import { Input } from 'antd';
 import './index.css';
 
-function SearchBar({ searchValue, setSearchValue }) {
-  const onSearchBarChange = function(e) {
-    setSearchValue(e.target.value);
-  };
-
+function SearchBar({
+    searchValue,
+    setSearchValue
+}) {
   return (
     <div className="SearchBar">
       <Input 
         placeholder="Search..."
         value={searchValue}
-        onChange={onSearchBarChange}/>
+        onChange={(e) => setSearchValue(e)}/>
     </div>
   );
 }

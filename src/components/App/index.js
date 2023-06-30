@@ -33,7 +33,7 @@ function App() {
   const [gameForPlayedGameRatingModal, setGameForPlayedGameRatingModal] = useState({});
   const [isDeletePlayedGameConfirmationModalOpen, setIsDeletePlayedGameConfirmationModalOpen] = useState(false);
   const topbar = useSelector(state => state.topbar.value);
-  const searchValue = useSelector(state => state.searchBar.value);
+  const searchValue = useSelector(state => state.searchValue.value);
 
   useFetchLatestGamesReleased({ 
     setLatestGamesReleased: setLatestGamesReleased,

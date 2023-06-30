@@ -1,10 +1,11 @@
 import React from 'react';
-import { WantToPlaySearchBar } from '../../features/wantToPlaySearchBar/WantToPlaySearchBar';
 import { GamesList } from '../GamesList';
 import { GameCard } from '../GameCard';
 import { EmptyWantToPlayGames } from '../EmptyWantToPlayGames';
 import './index.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setWantToPlaySearchValue } from '../../features/search/wantToPlaySearchSlice';
+import { SearchBar } from '../SearchBar';
 
 function WantToPlayBoard({
     wantToPlayGames,
@@ -16,13 +17,17 @@ function WantToPlayBoard({
     setGameForPlayedGameRatingModal,
     setIsDeletePlayedGameConfirmationModalOpen
 }) {
-    const wantToPlaySearchValue = useSelector(state => state.wantToPlaySearchBar.value);
+    const wantToPlaySearchValue = useSelector(state => state.wantToPlaySearchValue.value);
+    const dispatch = useDispatch();
 
     return (
         <>   
             {Object.keys(wantToPlayGames).length > 0 &&
             <>
-                <WantToPlaySearchBar />
+                <SearchBar 
+                    searchValue={wantToPlaySearchValue}
+                    setSearchValue={(e) => dispatch(setWantToPlaySearchValue(e.target.value))}                
+                />
                 <GamesList>
                     {wantToPlaySearchValue.length > 0
                     ? Object.values(wantToPlayGames).filter(g => g.name.toLowerCase().includes(wantToPlaySearchValue.toLowerCase())).map((game) => {

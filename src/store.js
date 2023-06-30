@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import topbarReducer from './features/topbar/topbarSlice';
-import searchBarReducer from './features/searchBar/searchBarSlice';
-import wantToPlaySearchBarReducer from './features/wantToPlaySearchBar/wantToPlaySearchBarSlice';
+import searchSliceReducer from './features/search/searchSlice';
+import wantToPlaySearchSliceReducer from './features/search/wantToPlaySearchSlice';
 
 const store = configureStore({
   reducer: {
     topbar: topbarReducer,
-    searchBar: searchBarReducer,
-    wantToPlaySearchBar: wantToPlaySearchBarReducer,
+    searchValue: searchSliceReducer,
+    wantToPlaySearchValue: wantToPlaySearchSliceReducer,
   }
 });
 

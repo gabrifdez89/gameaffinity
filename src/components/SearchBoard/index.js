@@ -1,9 +1,10 @@
 import React from 'react';
-import { SearchBar } from '../../features/searchBar/SearchBar';
+import { SearchBar } from '../SearchBar';
 import { GamesList } from '../GamesList';
 import { GameCard } from '../GameCard';
 import './index.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchValue } from '../../features/search/searchSlice';
 
 function SearchBoard({
     searchedGames,
@@ -17,11 +18,15 @@ function SearchBoard({
     setGameForPlayedGameRatingModal,
     setIsDeletePlayedGameConfirmationModalOpen
 }) {
-    const searchValue = useSelector(state => state.searchBar.value);
+    const searchValue = useSelector(state => state.searchValue.value);
+    const dispatch = useDispatch();
 
     return (
         <>   
-            <SearchBar />
+            <SearchBar 
+                searchValue={searchValue}
+                setSearchValue={(e) => dispatch(setSearchValue(e.target.value))}
+            />
             <GamesList>
             {searchValue.length > 0
             ? searchedGames.map((game) => {
