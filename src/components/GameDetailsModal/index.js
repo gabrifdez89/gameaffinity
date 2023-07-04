@@ -10,8 +10,7 @@ import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
 import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
 import { setWantToPlayGames } from '../../features/wantToPlayGames/wantToPlayGamesSlice';
 
-function GameDetailsModal({
-    playedGames }) {
+function GameDetailsModal() {
 
         const isModalOpen = useSelector(state => state.modalOpen.value);
         const gameDetails = useSelector(state => state.gameDetails.value);
@@ -19,6 +18,7 @@ function GameDetailsModal({
         const latestGamesReleased = useSelector(state => state.latestGamesReleased.value);
         const searchedGames = useSelector(state => state.searchedGames.value);
         const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
+        const playedGames = useSelector(state => state.playedGames.value);
         const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {

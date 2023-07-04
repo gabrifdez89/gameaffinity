@@ -15,6 +15,7 @@ import gameDetailsScreenshotsReducer from './features/gameDetailsScreenshots/gam
 import latestGamesReleasedReducer from './features/latestGamesReleased/latestGamesReleasedSlice';
 import searchedGamesReducer from './features/searchedGames/searchedGamesSlice';
 import wantToPlayGamesReducer from './features/wantToPlayGames/wantToPlayGamesSlice';
+import playedGamesReducer from './features/playedGames/playedGamesSlice';
 
 const store = configureStore({
   reducer: {
@@ -34,6 +35,7 @@ const store = configureStore({
     latestGamesReleased: latestGamesReleasedReducer,
     searchedGames: searchedGamesReducer,
     wantToPlayGames: wantToPlayGamesReducer,
+    playedGames: playedGamesReducer,
   }
 });
 

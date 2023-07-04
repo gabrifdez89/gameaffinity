@@ -9,8 +9,6 @@ import { SearchBar } from '../SearchBar';
 
 function WantToPlayBoard({
     openGameDetails,
-    playedGames,
-    setPlayedGames,
 }) {
     const wantToPlaySearchValue = useSelector(state => state.wantToPlaySearchValue.value);
     const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
@@ -32,8 +30,6 @@ function WantToPlayBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                playedGames={playedGames}
-                                setPlayedGames={setPlayedGames}
                             />);})
                     : Object.values(wantToPlayGames).map((game) => {
                         return (
@@ -41,8 +37,6 @@ function WantToPlayBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                playedGames={playedGames}
-                                setPlayedGames={setPlayedGames}
                             />);})}
                 </GamesList>
             </>}

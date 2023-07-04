@@ -10,11 +10,11 @@ import { setWantToPlayGames } from '../../features/wantToPlayGames/wantToPlayGam
 
 function GameCard({
   game,
-  openGameDetails,
-  playedGames }) {
+  openGameDetails }) {
 
   const dispatch = useDispatch();
   const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
+  const playedGames = useSelector(state => state.playedGames.value);
 
   const addGameToWantToPlay = (event) => {
     let copy = JSON.parse(JSON.stringify(wantToPlayGames));

@@ -6,15 +6,14 @@ import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingMod
 import { setPlayedGameRating } from '../../features/playedGameRating/playedGameRatingSlice';
 import { setPlayedGameReview } from '../../features/playedGameReview/playedGameReviewSlice';
 import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
+import { setPlayedGames } from '../../features/playedGames/playedGamesSlice';
 
-function PlayedGameRatingModal({
-    playedGames,
-    setPlayedGames
-}) {
+function PlayedGameRatingModal() {
     const playedGameRating = useSelector(state => state.playedGameRating.value);
     const playedGameReview = useSelector(state => state.playedGameReview.value);
     const gameForPlayedGameRatingModal = useSelector(state => state.gameForPlayedGameRatingModal.value);
     const isPlayedGameRatingModalOpen = useSelector(state => state.playedGameRatingModalOpen.value);
+    const playedGames = useSelector(state => state.playedGames.value);
     const dispatch = useDispatch();
     const formatter = (value) => `${value}%`;
     const { TextArea } = Input;
@@ -35,7 +34,7 @@ function PlayedGameRatingModal({
         copy[gameForPlayedGameRatingModal.slug] = JSON.parse(JSON.stringify(gameForPlayedGameRatingModal));
         copy[gameForPlayedGameRatingModal.slug]['own_rating'] = playedGameRating;
         copy[gameForPlayedGameRatingModal.slug]['own_review'] = playedGameReview;
-        setPlayedGames(copy);
+        dispatch(setPlayedGames(copy));
         localStorage.setItem('played_games', JSON.stringify(copy));
         dispatch(setPlayedGameRatingModalOpen(false));
         dispatch(setPlayedGameRating(0));

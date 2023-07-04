@@ -8,8 +8,6 @@ import { setSearchValue } from '../../features/search/searchSlice';
 
 function SearchBoard({
     openGameDetails,
-    playedGames,
-    setPlayedGames,
 }) {
     const searchValue = useSelector(state => state.searchValue.value);
     const latestGamesReleased = useSelector(state => state.latestGamesReleased.value);
@@ -30,8 +28,6 @@ function SearchBoard({
                         game={game}
                         key={game.id}
                         openGameDetails={openGameDetails}
-                        playedGames={playedGames}
-                        setPlayedGames={setPlayedGames}
                     />
                     );
                     })
@@ -41,8 +37,6 @@ function SearchBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                playedGames={playedGames}
-                                setPlayedGames={setPlayedGames}
                             />
                             );
                         })}

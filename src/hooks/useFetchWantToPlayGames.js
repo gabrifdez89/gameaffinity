@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setWantToPlayGames } from '../features/wantToPlayGames/wantToPlayGamesSlice';
 
-function useFetchWantToPlayGames({
-    setWantToPlayGames,
-    playedGames }) {
+function useFetchWantToPlayGames() {
+  const dispatch = useDispatch();
+  const playedGames = useSelector(state => state.playedGames.value);
   useEffect(() => {
     async function getWantToPlayGames() {
       let wantToPlayGamesLocalStorage = await JSON.parse(localStorage.getItem('want_to_play_games'));
@@ -21,9 +23,9 @@ function useFetchWantToPlayGames({
           wantToPlayGamesWithOwnData[key]['own_review'] = playedGames[key]['own_review'];
         }
       }
-      setWantToPlayGames(wantToPlayGamesWithOwnData);
+      dispatch(setWantToPlayGames(wantToPlayGamesWithOwnData));
     });
-  }, [setWantToPlayGames, playedGames]);
+  }, [dispatch, playedGames]);
 }
 
 export { useFetchWantToPlayGames };

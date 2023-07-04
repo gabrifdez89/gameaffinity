@@ -9,10 +9,9 @@ import { setPlayedSearchValue } from '../../features/search/playedSearchSlice';
 
 function PlayedBoard({
     openGameDetails,
-    playedGames,
-    setPlayedGames,
 }) {
     const playedSearchValue = useSelector(state => state.playedSearchValue.value);
+    const playedGames = useSelector(state => state.playedGames.value);
     const dispatch = useDispatch();
 
     return (
@@ -31,8 +30,6 @@ function PlayedBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                playedGames={playedGames}
-                                setPlayedGames={setPlayedGames}
                             />);})
                     : Object.values(playedGames).map((game) => {
                         return (
@@ -40,8 +37,6 @@ function PlayedBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                playedGames={playedGames}
-                                setPlayedGames={setPlayedGames}
                             />);})}
                 </GamesList>
             </>}
