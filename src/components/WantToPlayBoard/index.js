@@ -1,29 +1,26 @@
 import React from 'react';
-import { SearchBar } from '../SearchBar';
 import { GamesList } from '../GamesList';
 import { GameCard } from '../GameCard';
 import { EmptyWantToPlayGames } from '../EmptyWantToPlayGames';
 import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setWantToPlaySearchValue } from '../../features/search/wantToPlaySearchSlice';
+import { SearchBar } from '../SearchBar';
 
 function WantToPlayBoard({
-    wantToPlaySearchValue,
-    setWantToPlaySearchValue,
-    wantToPlayGames,
-    setWantToPlayGames,
     openGameDetails,
-    playedGames,
-    setPlayedGames,
-    setIsPlayedGameRatingModalOpen,
-    setGameForPlayedGameRatingModal,
-    setIsDeletePlayedGameConfirmationModalOpen
 }) {
+    const wantToPlaySearchValue = useSelector(state => state.wantToPlaySearchValue.value);
+    const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
+    const dispatch = useDispatch();
+
     return (
         <>   
             {Object.keys(wantToPlayGames).length > 0 &&
             <>
-                <SearchBar
+                <SearchBar 
                     searchValue={wantToPlaySearchValue}
-                    setSearchValue={setWantToPlaySearchValue}
+                    setSearchValue={(e) => dispatch(setWantToPlaySearchValue(e.target.value))}                
                 />
                 <GamesList>
                     {wantToPlaySearchValue.length > 0
@@ -33,13 +30,6 @@ function WantToPlayBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                wantToPlayGames={wantToPlayGames}
-                                setWantToPlayGames={setWantToPlayGames}
-                                playedGames={playedGames}
-                                setPlayedGames={setPlayedGames}
-                                setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
-                                setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
-                                setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
                             />);})
                     : Object.values(wantToPlayGames).map((game) => {
                         return (
@@ -47,13 +37,6 @@ function WantToPlayBoard({
                                 game={game}
                                 key={game.id}
                                 openGameDetails={openGameDetails}
-                                wantToPlayGames={wantToPlayGames}
-                                setWantToPlayGames={setWantToPlayGames}
-                                playedGames={playedGames}
-                                setPlayedGames={setPlayedGames}
-                                setIsPlayedGameRatingModalOpen={setIsPlayedGameRatingModalOpen}
-                                setGameForPlayedGameRatingModal={setGameForPlayedGameRatingModal}
-                                setIsDeletePlayedGameConfirmationModalOpen={setIsDeletePlayedGameConfirmationModalOpen}
                             />);})}
                 </GamesList>
             </>}

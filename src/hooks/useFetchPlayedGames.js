@@ -1,21 +1,24 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setPlayedGames } from '../features/playedGames/playedGamesSlice';
 
-function useFetchPlayedGames({
-    setPlayedGames }) {
+function useFetchPlayedGames() {
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     async function getPlayedGames() {
       let playedGamesLocalStorage = await JSON.parse(localStorage.getItem('played_games'));
       if (playedGamesLocalStorage === null) {
         playedGamesLocalStorage = {};
       }
-
+      
       return playedGamesLocalStorage;
     }
 
     getPlayedGames().then((games) => {
-        setPlayedGames(games);
+        dispatch(setPlayedGames(games));
     });
-  }, [setPlayedGames]);
+  }, [dispatch]);
 }
 
 export { useFetchPlayedGames };

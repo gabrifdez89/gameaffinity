@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchedGames } from '../features/searchedGames/searchedGamesSlice';
 
-function useFetchSearchedGames({
-  setSearchedGames,
-  searchValue,
-  playedGames }) {
+function useFetchSearchedGames() {
+    const dispatch = useDispatch();
+    const searchValue = useSelector(state => state.searchValue.value);
+    const playedGames = useSelector(state => state.playedGames.value);
     useEffect(() => {
         const api = axios.create({
           baseURL: 'https://api.rawg.io/api/',
@@ -12,7 +14,7 @@ function useFetchSearchedGames({
             'Content-Type': 'application/json;charset=utf-8'
           },
           params: {
-            'key': '14c3d9116d5e49cb8ed834b4f613306c',
+            'key': 'e257ff7e01a847989265619f5e2d86e7',
           }
         });
     
@@ -31,12 +33,12 @@ function useFetchSearchedGames({
               }
               return game;
             });
-            setSearchedGames(searchedGamesWithOwnData);
+            dispatch(setSearchedGames(searchedGamesWithOwnData));
           }).catch((err) => {
             console.log(err);
           });
         }
-    }, [setSearchedGames, searchValue, playedGames]);
+    }, [dispatch, searchValue, playedGames]);
 }
 
 export { useFetchSearchedGames };

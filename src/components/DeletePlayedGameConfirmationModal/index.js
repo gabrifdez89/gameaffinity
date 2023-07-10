@@ -2,24 +2,29 @@ import React from 'react';
 import { Modal } from 'antd';
 
 import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
+import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
+import { setPlayedGames } from '../../features/playedGames/playedGamesSlice';
 
-function DeletePlayedGameConfirmationModal({
-    gameForPlayedGameRatingModal,
-    playedGames,
-    setPlayedGames,
-    isDeletePlayedGameConfirmationModalOpen,
-    setIsDeletePlayedGameConfirmationModalOpen
-}) {
+function DeletePlayedGameConfirmationModal() {
+    const isDeletePlayedGameConfirmationModalOpen = useSelector(state => state.deletePlayedGameConfirmationModalOpen.value);
+    const gameForPlayedGameRatingModal = useSelector(state => state.gameForPlayedGameRatingModal.value);
+    const playedGames = useSelector(state => state.playedGames.value);
+    const dispatch = useDispatch();
+
     const ok = () => {
         let copy = JSON.parse(JSON.stringify(playedGames));
         delete copy[gameForPlayedGameRatingModal.slug];
-        setPlayedGames(copy);
+        dispatch(setPlayedGames(copy));
         localStorage.setItem('played_games', JSON.stringify(copy));
-        setIsDeletePlayedGameConfirmationModalOpen(false);
+        dispatch(setDeletePlayedGameConfirmationModalOpen(false));
+        dispatch(setGameForPlayedGameRatingModal({}));
     }
 
     const cancel = () => {
-        setIsDeletePlayedGameConfirmationModalOpen(false);
+        dispatch(setDeletePlayedGameConfirmationModalOpen(false))
+        dispatch(setGameForPlayedGameRatingModal({}));
     }
 
     return (

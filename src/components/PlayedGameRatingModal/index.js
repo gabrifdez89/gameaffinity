@@ -1,43 +1,44 @@
 import React from 'react';
 import { Modal, Slider, Input } from 'antd';
 import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
+import { setPlayedGameRating } from '../../features/playedGameRating/playedGameRatingSlice';
+import { setPlayedGameReview } from '../../features/playedGameReview/playedGameReviewSlice';
+import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
+import { setPlayedGames } from '../../features/playedGames/playedGamesSlice';
 
-function PlayedGameRatingModal({
-    isPlayedGameRatingModalOpen,
-    setIsPlayedGameRatingModalOpen,
-    playedGameRating,
-    setPlayedGameRating,
-    playedGameReview,
-    setPlayedGameReview,
-    gameForPlayedGameRatingModal,
-    setGameForPlayedGameRatingModal,
-    playedGames,
-    setPlayedGames
-}) {
+function PlayedGameRatingModal() {
+    const playedGameRating = useSelector(state => state.playedGameRating.value);
+    const playedGameReview = useSelector(state => state.playedGameReview.value);
+    const gameForPlayedGameRatingModal = useSelector(state => state.gameForPlayedGameRatingModal.value);
+    const isPlayedGameRatingModalOpen = useSelector(state => state.playedGameRatingModalOpen.value);
+    const playedGames = useSelector(state => state.playedGames.value);
+    const dispatch = useDispatch();
     const formatter = (value) => `${value}%`;
     const { TextArea } = Input;
     const setRating = (value) => {
-        setPlayedGameRating(value);
+        dispatch(setPlayedGameRating(value));
     };
     const setReview = (event) => {
-        setPlayedGameReview(event.target.value);
+        dispatch(setPlayedGameReview(event.target.value));
     };
     const cancel = () => {
-        setIsPlayedGameRatingModalOpen(false);
-        setPlayedGameRating(0);
-        setPlayedGameReview('');
-        setGameForPlayedGameRatingModal({});
+        dispatch(setPlayedGameRatingModalOpen(false));
+        dispatch(setPlayedGameRating(0));
+        dispatch(setPlayedGameReview(''))
+        dispatch(setGameForPlayedGameRatingModal({}));
     };
     const ok = () => {
         let copy = JSON.parse(JSON.stringify(playedGames));
-        copy[gameForPlayedGameRatingModal.slug] = gameForPlayedGameRatingModal;
+        copy[gameForPlayedGameRatingModal.slug] = JSON.parse(JSON.stringify(gameForPlayedGameRatingModal));
         copy[gameForPlayedGameRatingModal.slug]['own_rating'] = playedGameRating;
         copy[gameForPlayedGameRatingModal.slug]['own_review'] = playedGameReview;
-        setPlayedGames(copy);
+        dispatch(setPlayedGames(copy));
         localStorage.setItem('played_games', JSON.stringify(copy));
-        setIsPlayedGameRatingModalOpen(false);
-        setPlayedGameRating(0);
-        setPlayedGameReview('');
+        dispatch(setPlayedGameRatingModalOpen(false));
+        dispatch(setPlayedGameRating(0));
+        dispatch(setPlayedGameReview(''))
     };
 
     return (

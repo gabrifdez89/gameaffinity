@@ -1,12 +1,13 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Menu } from 'antd';
 import { SearchOutlined, PlusCircleOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { setTopbar } from '../../features/topbar/topbarSlice';
 import './index.css';
 
-function TopBar({
-  currentTopBarOption,
-  setCurrentTopBarOption
-}) {
+function Topbar() {
+    const topbar = useSelector(state => state.topbar.value);
+    const dispatch = useDispatch();
     const items = [
         {
           label: 'Search',
@@ -25,15 +26,15 @@ function TopBar({
         },
     ];
 
-    const onClick = (e) => {
-        setCurrentTopBarOption(e.key);
-    };
+    const handleClick = function (e) {
+        dispatch(setTopbar(e.key));
+    }
 
     return (
         <div className='TopBar'>
-            <Menu onClick={onClick} selectedKeys={[currentTopBarOption]} mode="horizontal" items={items} />
+            <Menu onClick={(e) => handleClick(e)} selectedKeys={[topbar]} mode="horizontal" items={items} />
         </div>
     );
 }
 
-export { TopBar };
+export { Topbar };

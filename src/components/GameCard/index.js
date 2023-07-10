@@ -2,22 +2,24 @@ import React from 'react';
 import { PlusCircleOutlined, MinusCircleOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
+import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
+import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
+import { setWantToPlayGames } from '../../features/wantToPlayGames/wantToPlayGamesSlice';
 
 function GameCard({
   game,
-  openGameDetails,
-  wantToPlayGames,
-  setWantToPlayGames,
-  playedGames,
-  setPlayedGames,
-  setIsPlayedGameRatingModalOpen,
-  setGameForPlayedGameRatingModal,
-  setIsDeletePlayedGameConfirmationModalOpen }) {
+  openGameDetails }) {
+
+  const dispatch = useDispatch();
+  const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
+  const playedGames = useSelector(state => state.playedGames.value);
 
   const addGameToWantToPlay = (event) => {
     let copy = JSON.parse(JSON.stringify(wantToPlayGames));
     copy[game.slug] = game;
-    setWantToPlayGames(copy);
+    dispatch(setWantToPlayGames(copy));
     localStorage.setItem('want_to_play_games', JSON.stringify(copy));
     event.stopPropagation();
   };
@@ -25,20 +27,20 @@ function GameCard({
   const removeGameFromWantToPlay = (event) => {
     let copy = JSON.parse(JSON.stringify(wantToPlayGames));
     delete copy[game.slug];
-    setWantToPlayGames(copy);
+    dispatch(setWantToPlayGames(copy));
     localStorage.setItem('want_to_play_games', JSON.stringify(copy));
     event.stopPropagation();
   };
 
   const openDeletePlayedGameConfirmationModal = (event) => {
-    setGameForPlayedGameRatingModal(game);
-    setIsDeletePlayedGameConfirmationModalOpen(true);
+    dispatch(setGameForPlayedGameRatingModal(game));
+    dispatch(setDeletePlayedGameConfirmationModalOpen(true));
     event.stopPropagation();
   };
 
   const openPlayedGameRatingModal = (event) => {
-    setGameForPlayedGameRatingModal(game);
-    setIsPlayedGameRatingModalOpen(true);
+    dispatch(setGameForPlayedGameRatingModal(game));
+    dispatch(setPlayedGameRatingModalOpen(true));
     event.stopPropagation();
   };
 

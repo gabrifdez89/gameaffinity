@@ -3,46 +3,49 @@ import { Modal, Carousel } from 'antd';
 import { PlusCircleOutlined, MinusCircleOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 import './index.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeletePlayedGameConfirmationModalOpen } from '../../features/deletePlayedGameConfirmationModalOpen/deletePlayedGameConfirmationModalOpenSlice';
+import { setPlayedGameRatingModalOpen } from '../../features/playedGameRatingModalOpen/playedGameRatingModalOpenSlice';
+import { setModalOpen } from '../../features/modalOpen/modalOpenSlice';
+import { setGameForPlayedGameRatingModal } from '../../features/gameForPlayedGameRatingModal/gameForPlayedGameRatingModalSlice';
+import { setWantToPlayGames } from '../../features/wantToPlayGames/wantToPlayGamesSlice';
 
-function GameDetailsModal({
-    gameDetails,
-    isModalOpen,
-    setIsModalOpen,
-    gameDetailsScreenshots,
-    wantToPlayGames,
-    setWantToPlayGames,
-    searchedGames,
-    latestGamesReleased,
-    playedGames,
-    setIsPlayedGameRatingModalOpen,
-    setGameForPlayedGameRatingModal,
-    setIsDeletePlayedGameConfirmationModalOpen }) {
+function GameDetailsModal() {
+
+        const isModalOpen = useSelector(state => state.modalOpen.value);
+        const gameDetails = useSelector(state => state.gameDetails.value);
+        const gameDetailsScreenshots = useSelector(state => state.gameDetailsScreenshots.value);
+        const latestGamesReleased = useSelector(state => state.latestGamesReleased.value);
+        const searchedGames = useSelector(state => state.searchedGames.value);
+        const wantToPlayGames = useSelector(state => state.wantToPlayGames.value);
+        const playedGames = useSelector(state => state.playedGames.value);
+        const dispatch = useDispatch();
 
         const addGameToWantToPlay = () => {
             let copy = JSON.parse(JSON.stringify(wantToPlayGames));
             let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
             copy[gameDetails.slug] = game;
-            setWantToPlayGames(copy);
+            dispatch(setWantToPlayGames(copy));
             localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
         
         const removeGameFromWantToPlay = () => {
             let copy = JSON.parse(JSON.stringify(wantToPlayGames));
             delete copy[gameDetails.slug];
-            setWantToPlayGames(copy);
+            dispatch(setWantToPlayGames(copy));
             localStorage.setItem('want_to_play_games', JSON.stringify(copy));
         };
 
         const openPlayedGameRatingModal = () => {
-            let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
-            setGameForPlayedGameRatingModal(game);
-            setIsPlayedGameRatingModalOpen(true);
+            let game = searchedGames.concat(latestGamesReleased).concat(Object.values(wantToPlayGames)).find(g => g.slug === gameDetails.slug);
+            dispatch(setGameForPlayedGameRatingModal(game));
+            dispatch(setPlayedGameRatingModalOpen(true));
         };
 
         const openDeletePlayedGameConfirmationModal = () => {
-            let game = searchedGames.concat(latestGamesReleased).find(g => g.slug === gameDetails.slug);
-            setGameForPlayedGameRatingModal(game);
-            setIsDeletePlayedGameConfirmationModalOpen(true);
+            let game = Object.values(playedGames).find(g => g.slug === gameDetails.slug);
+            dispatch(setGameForPlayedGameRatingModal(game));
+            dispatch(setDeletePlayedGameConfirmationModalOpen(true));
         };
     
         return(
@@ -52,14 +55,14 @@ function GameDetailsModal({
                     className="GameDetailsModal"
                     title={gameDetails.name}
                     open={isModalOpen}
-                    onCancel={() => { setIsModalOpen(false) }}
+                    onCancel={() => { dispatch(setModalOpen(false)) }}
                     footer={null}
                     width={700}
                     centered={true}>
                         <div className="GameDetailsModalHeader">
                             {gameDetails.metacritic &&
                             <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>}
-                            {gameDetails.own_rating &&
+                            {gameDetails.own_rating !== undefined &&
                             <p className="GameDetailsModalOwnRating"><span>My rating: </span>{gameDetails.own_rating}%</p>}
                             {gameDetails.own_review &&
                             <p className="GameDetailsModalOwnReview"><span>My review: </span>"{gameDetails.own_review}"</p>}

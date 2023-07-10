@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLatestGamesReleased } from '../features/latestGamesReleased/latestGamesReleasedSlice';
 
-function useFetchLatestGamesReleased({
-  setLatestGamesReleased,
-  playedGames }) {
+function useFetchLatestGamesReleased() {
+  const dispatch = useDispatch();
+  const playedGames = useSelector(state => state.playedGames.value);
   useEffect(() => {
     const api = axios.create({
       baseURL: 'https://api.rawg.io/api/',
@@ -11,7 +13,7 @@ function useFetchLatestGamesReleased({
         'Content-Type': 'application/json;charset=utf-8'
       },
       params: {
-        'key': '14c3d9116d5e49cb8ed834b4f613306c',
+        'key': 'e257ff7e01a847989265619f5e2d86e7',
       }
     });
 
@@ -33,11 +35,11 @@ function useFetchLatestGamesReleased({
         }
         return game;
       });
-      setLatestGamesReleased(latestGamesReleasedWithOwnData);
+      dispatch(setLatestGamesReleased(latestGamesReleasedWithOwnData));
     }).catch((err) => {
       console.log(err);
     });
-  }, [setLatestGamesReleased, playedGames]);
+  }, [dispatch, playedGames]);
 }
 
 export { useFetchLatestGamesReleased };
