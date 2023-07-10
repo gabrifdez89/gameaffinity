@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/gameaffinity/static/css/main.399e8544.css",
-    "main.js": "/gameaffinity/static/js/main.f8ae3957.js",
+    "main.css": "/gameaffinity/static/css/main.caeb4164.css",
+    "main.js": "/gameaffinity/static/js/main.e0459c0e.js",
     "index.html": "/gameaffinity/index.html",
-    "main.399e8544.css.map": "/gameaffinity/static/css/main.399e8544.css.map",
-    "main.f8ae3957.js.map": "/gameaffinity/static/js/main.f8ae3957.js.map"
+    "main.caeb4164.css.map": "/gameaffinity/static/css/main.caeb4164.css.map",
+    "main.e0459c0e.js.map": "/gameaffinity/static/js/main.e0459c0e.js.map"
   },
   "entrypoints": [
-    "static/css/main.399e8544.css",
-    "static/js/main.f8ae3957.js"
+    "static/css/main.caeb4164.css",
+    "static/js/main.e0459c0e.js"
   ]
 }
