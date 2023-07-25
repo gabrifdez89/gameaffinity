@@ -64,6 +64,8 @@ function GameDetailsModal() {
                             <a href={gameDetails.metacritic_url} className="GameDetailsModalMetacritic"><p>Metacritic: {gameDetails.metacritic}</p></a>}
                             {gameDetails.own_rating !== undefined &&
                             <p className="GameDetailsModalOwnRating"><span>My rating: </span>{gameDetails.own_rating}%</p>}
+                            {gameDetails.playtime &&
+                            <p className="GameDetailsModalPlayTime"><span>Playtime: </span>{gameDetails.playtime} hours</p>}
                             {gameDetails.own_review &&
                             <p className="GameDetailsModalOwnReview"><span>My review: </span>"{gameDetails.own_review}"</p>}
                             {wantToPlayGames[gameDetails.slug]

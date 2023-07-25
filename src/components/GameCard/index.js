@@ -49,6 +49,7 @@ function GameCard({
       <img className="GameCardImage" alt="" src={game.background_image} />
       {game.metacritic ? (<h3 className="GameCardRating">{game.metacritic}</h3>): ('')}
       {game.own_rating !== undefined ? (<h3 className={game.own_rating === 100 ? "GameCardOwnRating-100" : "GameCardOwnRating"}>{game.own_rating}</h3>): ('')}
+      {game.playtime ? (<><h3 className="GameCardPlayTime">{game.playtime}</h3><h4 className='GameCardPlayTimeHours'>HOURS</h4></>): ('')}
       <h2 className="GameCardTitle">{game.name}</h2>
       {wantToPlayGames[game.slug]
       ? <MinusCircleOutlined className="GameCardWantToPlayIconSaved" onClick={removeGameFromWantToPlay} /> 
